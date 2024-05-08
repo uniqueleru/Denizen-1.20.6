@@ -22,6 +22,8 @@ main_gui_world:
             - run main_gui_toggle_task def.option:jump_share def.player:<player>
         - if <context.item> == <item[main_gui_item_random_damage]>:
             - run main_gui_toggle_task def.option:random_damage def.player:<player>
+        - if <context.item> == <item[main_gui_item_mob_downscale]>:
+            - run main_gui_toggle_task def.option:mob_downscale def.player:<player>
         - inventory open d:main_gui_inventory
 
 main_gui_toggle_task:
@@ -49,7 +51,7 @@ main_gui_inventory:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_share_damage] [] [main_gui_item_hpshow] [] [main_gui_item_share_inventory] [] [main_gui_item_random_pickup] []
     - [] [] [] [] [] [] [] [] []
-    - [] [main_gui_item_jump_share] [] [main_gui_item_random_damage] [] [] [] [] []
+    - [] [main_gui_item_jump_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] [] [] []
     - [] [] [] [] [] [] [] [] []
 
 main_gui_item_share_damage:
@@ -110,4 +112,14 @@ main_gui_item_random_damage:
     - <&f>
     - <&f> - <&7>랜덤 데미지 여부를 결정합니다.
     - <&f> - <&7>현재 상태: <&f><server.flag[random_damage]>
+    - <&f>
+
+main_gui_item_mob_downscale:
+    type: item
+    material: slime_ball
+    display name: <&b>몹 소형화
+    lore:
+    - <&f>
+    - <&f> - <&7>몬스터의 소형화 여부를 결정합니다
+    - <&f> - <&7>현재 상태: <&f><server.flag[mob_downscale]>
     - <&f>
