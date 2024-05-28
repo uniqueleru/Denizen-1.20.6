@@ -6,26 +6,6 @@ option_menu_command:
     script:
     - inventory open d:main_gui_inventory
 
-main_gui_world:
-    type: world
-    events:
-        on player clicks in main_gui_inventory:
-        - if <context.item> == <item[main_gui_item_share_damage]>:
-            - run main_gui_toggle_task def.option:share_damage def.player:<player>
-        - if <context.item> == <item[main_gui_item_hpshow]>:
-            - run main_gui_toggle_task def.option:tablist_hp_show def.player:<player>
-        - if <context.item> == <item[main_gui_item_share_inventory]>:
-            - run main_gui_toggle_task def.option:share_inventory def.player:<player>
-        - if <context.item> == <item[main_gui_item_random_pickup]>:
-            - run main_gui_toggle_task def.option:random_pickup def.player:<player>
-        - if <context.item> == <item[main_gui_item_jump_share]>:
-            - run main_gui_toggle_task def.option:jump_share def.player:<player>
-        - if <context.item> == <item[main_gui_item_random_damage]>:
-            - run main_gui_toggle_task def.option:random_damage def.player:<player>
-        - if <context.item> == <item[main_gui_item_mob_downscale]>:
-            - run main_gui_toggle_task def.option:mob_downscale def.player:<player>
-        - inventory open d:main_gui_inventory
-
 main_gui_toggle_task:
     type: task
     definitions: option|player
@@ -51,8 +31,30 @@ main_gui_inventory:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_share_damage] [] [main_gui_item_hpshow] [] [main_gui_item_share_inventory] [] [main_gui_item_random_pickup] []
     - [] [] [] [] [] [] [] [] []
-    - [] [main_gui_item_jump_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] [] [] []
+    - [] [main_gui_item_jump_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] [] [main_gui_item_weakness] []
     - [] [] [] [] [] [] [] [] []
+
+main_gui_world:
+    type: world
+    events:
+        on player clicks in main_gui_inventory:
+        - if <context.item> == <item[main_gui_item_share_damage]>:
+            - run main_gui_toggle_task def.option:share_damage def.player:<player>
+        - if <context.item> == <item[main_gui_item_hpshow]>:
+            - run main_gui_toggle_task def.option:tablist_hp_show def.player:<player>
+        - if <context.item> == <item[main_gui_item_share_inventory]>:
+            - run main_gui_toggle_task def.option:share_inventory def.player:<player>
+        - if <context.item> == <item[main_gui_item_random_pickup]>:
+            - run main_gui_toggle_task def.option:random_pickup def.player:<player>
+        - if <context.item> == <item[main_gui_item_jump_share]>:
+            - run main_gui_toggle_task def.option:jump_share def.player:<player>
+        - if <context.item> == <item[main_gui_item_random_damage]>:
+            - run main_gui_toggle_task def.option:random_damage def.player:<player>
+        - if <context.item> == <item[main_gui_item_mob_downscale]>:
+            - run main_gui_toggle_task def.option:mob_downscale def.player:<player>
+        - if <context.item> == <item[main_gui_item_weakness]>:
+            - run main_gui_toggle_task def.option:mob_downscale def.player:<player>
+        - inventory open d:main_gui_inventory
 
 main_gui_item_share_damage:
     type: item
@@ -122,4 +124,14 @@ main_gui_item_mob_downscale:
     - <&f>
     - <&f> - <&7>몬스터의 소형화 여부를 결정합니다
     - <&f> - <&7>현재 상태: <&f><server.flag[mob_downscale]>
+    - <&f>
+
+main_gui_item_weakness:
+    type: item
+    material: wooden_sword
+    display name: <&2>나약화
+    lore:
+    - <&f>
+    - <&f> - <&7>나약화 여부를 결정합니다
+    - <&f> - <&7>현재 상태: <&f><server.flag[weakness]>
     - <&f>
