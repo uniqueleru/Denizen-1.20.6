@@ -1,18 +1,23 @@
 chain_event_handler:
     type: world
     events:
-        on delta time secondly:
+        on tick every:5:
         - if <server.flag[chain]> == <&c>비활성화됨:
             - stop
-        - define variance <proc[chain_get_variance]>
-        - actionbar "<&f> <[variance.x].round_to[3]>" targets:<server.online_players>
+        - define finalValue <proc[chain_get_final_value]>
+        - run chain_give_damage def.amount:<[finalValue]>
 
 chain_give_damage:
     type: task
     definitions: amount
     script:
+    - if <[amount]> <= 4:
+        - define dmg 0
+    - else:
+        - define dmg <[amount].div[2]>
     - foreach <server.online_players> as:target:
-        - hurt <[amount]> <[target]> cause:CUSTOM
+        - hurt <[dmg]> <[target]> cause:CUSTOM
+    - actionbar "<&7>떨어진 정도: <&e><[amount].round_to[1]> <&f>| <&7>받는 대미지: <&c><[dmg].round_to[1]>" targets:<server.online_players>
 
 chain_get_average:
     type: procedure
@@ -50,3 +55,13 @@ chain_get_variance:
     - define variance.y:/:<server.online_players.size>
     - define variance.z:/:<server.online_players.size>
     - determine <[variance]>
+
+chain_get_final_value:
+    type: procedure
+    script:
+    - define variance <proc[chain_get_variance]>
+    - define finalValue 0
+    - define finalValue:+:<[variance.x]>
+    - define finalValue:+:<[variance.y].div[10]>
+    - define finalValue:+:<[variance.z]>
+    - determine <[finalValue].sqrt>
