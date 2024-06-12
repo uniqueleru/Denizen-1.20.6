@@ -4,9 +4,14 @@ chain_event_handler:
         on tick every:5:
         - if <server.flag[chain]> == <&c>비활성화됨:
             - stop
+        - if <server.flag[chain_damage_bypass]> > 0:
+            - define <server.flag[chain_damage_bypass]>:-:1
+            - stop
         - define finalValue <proc[chain_get_final_value]>
         - run chain_give_damage def.amount:<[finalValue]>
-.
+        on player uses portal:
+        - define <server.flag[chain_damage_bypass]> 4
+
 chain_give_damage:
     type: task
     definitions: amount
