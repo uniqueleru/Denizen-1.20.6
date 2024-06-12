@@ -30,7 +30,7 @@ main_gui_inventory:
     slots:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_share_damage] [] [main_gui_item_hpshow] [] [main_gui_item_share_inventory] [] [main_gui_item_random_pickup] []
-    - [] [] [main_gui_item_speedup] [] [] [] [] [] []
+    - [] [] [main_gui_item_speedup] [] [main_gui_item_chain] [] [] [] []
     - [] [main_gui_item_jump_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] [] [main_gui_item_weakness] []
     - [] [] [] [] [] [] [] [] []
 
@@ -56,6 +56,8 @@ main_gui_world:
             - run main_gui_toggle_task def.option:weakness def.player:<player>
         - if <context.item> == <item[main_gui_item_speedup]>:
             - run main_gui_toggle_task def.option:speedup def.player:<player>
+        - if <context.item> == <item[main_gui_item_chain]>:
+            - run main_gui_toggle_task def.option:chain def.player:<player>
         - inventory open d:main_gui_inventory
 
 main_gui_item_share_damage:
@@ -146,4 +148,14 @@ main_gui_item_speedup:
     - <&f>
     - <&f> - <&7>나약화 여부를 결정합니다
     - <&f> - <&7>현재 상태: <&f><server.flag[speedup]>
+    - <&f>
+
+main_gui_item_chain:
+    type: item
+    material: chain
+    display name: <&6>연결고리
+    lore:
+    - <&f>
+    - <&f> - <&7>너와 나의 연결고리
+    - <&f> - <&7>현재 상태: <&f><server.flag[chain]>
     - <&f>
