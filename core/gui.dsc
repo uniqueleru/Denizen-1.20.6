@@ -1,3 +1,6 @@
+#GUI 부분 /optiongui 인게임 커맨드로 옵션 토글 메뉴 오픈
+#초기 실행시 각 옵션 버튼 한번씩 눌러줘야 서버 플래그가 초기화됩니다.
+
 option_menu_command:
     type: command
     name: optiongui
