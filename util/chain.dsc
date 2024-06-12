@@ -6,7 +6,7 @@ chain_event_handler:
             - stop
         - define finalValue <proc[chain_get_final_value]>
         - run chain_give_damage def.amount:<[finalValue]>
-
+.
 chain_give_damage:
     type: task
     definitions: amount
