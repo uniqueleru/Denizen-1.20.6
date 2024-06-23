@@ -33,7 +33,7 @@ main_gui_inventory:
     slots:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_share_damage] [] [main_gui_item_hpshow] [] [main_gui_item_share_inventory] [] [main_gui_item_random_pickup] []
-    - [] [] [main_gui_item_speedup] [] [main_gui_item_chain] [] [] [] []
+    - [] [] [main_gui_item_speedup] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] [] []
     - [] [main_gui_item_jump_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] [] [main_gui_item_weakness] []
     - [] [] [] [] [] [] [] [] []
 
@@ -61,6 +61,8 @@ main_gui_world:
             - run main_gui_toggle_task def.option:speedup def.player:<player>
         - if <context.item> == <item[main_gui_item_chain]>:
             - run main_gui_toggle_task def.option:chain def.player:<player>
+        - if <context.item> == <item[main_gui_item_one_inventory]>:
+            - run main_gui_toggle_task def.option:one_inventory def.player:<player>
         - inventory open d:main_gui_inventory
 
 main_gui_item_share_damage:
@@ -161,4 +163,14 @@ main_gui_item_chain:
     - <&f>
     - <&f> - <&7>너와 나의 연결고리
     - <&f> - <&7>현재 상태: <&f><server.flag[chain]>
+    - <&f>
+
+main_gui_item_one_inventory:
+    type: item
+    material: chest
+    display name: <&c>인벤토리 한칸
+    lore:
+    - <&f>
+    - <&f> - <&7>인벤토리 한칸
+    - <&f> - <&7>현재 상태: <&f><server.flag[one_inventory]>
     - <&f>
