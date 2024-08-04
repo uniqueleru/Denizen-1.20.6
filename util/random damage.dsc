@@ -5,7 +5,7 @@ random_damage_world:
         - if <server.flag[random_damage]> == <&c>비활성화됨:
             - stop
         - define origin_damage <context.damage>
-        - define random_num <util.random.decimal[1].to[20]>
+        - define random_num <util.random.decimal[1].to[30]>
         - define cause <context.cause>
         - if <[cause]> != CUSTOM:
             - determine passively <[random_num]>
