@@ -1,4 +1,5 @@
 chain_event_handler:
+    debug: false
     type: world
     events:
         on tick every:5:
@@ -13,6 +14,7 @@ chain_event_handler:
         - flag server chain_damage_bypass:4
 
 chain_give_damage:
+    debug: false
     type: task
     definitions: amount
     script:
@@ -25,6 +27,7 @@ chain_give_damage:
     - actionbar "<&7>떨어진 정도: <&e><[amount].round_to[1]> <&f>| <&7>받는 대미지: <&c><[dmg].round_to[1]>" targets:<server.online_players>
 
 chain_get_average:
+    debug: false
     type: procedure
     script:
     - define sum.x 0
@@ -40,6 +43,7 @@ chain_get_average:
     - determine <[avg]>
 
 chain_get_variance:
+    debug: false
     type: procedure
     script:
     - define avg <proc[chain_get_average]>
@@ -62,6 +66,7 @@ chain_get_variance:
     - determine <[variance]>
 
 chain_get_final_value:
+    debug: false
     type: procedure
     script:
     - define variance <proc[chain_get_variance]>

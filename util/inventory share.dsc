@@ -1,4 +1,5 @@
 inventory_share_event_handler:
+    debug: false
     type: world
     events:
         after player picks up item:
@@ -12,6 +13,7 @@ inventory_share_event_handler:
 
 
 delete_inventory_on_death:
+    debug: false
     type: task
     definitions: origin
     script:
@@ -26,6 +28,7 @@ delete_inventory_on_death:
                 - define slot:+:9
                 - inventory set d:<[target].inventory> slot:<[slot]> o:air
 copy_inventory_data:
+    debug: false
     type: task
     definitions: origin
     script:

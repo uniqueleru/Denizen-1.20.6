@@ -1,5 +1,6 @@
 dmgshare_world:
     type: world
+    debug: false
     events:
         on player dies:
         - flag <context.entity> death_count:+:1
@@ -20,6 +21,7 @@ dmgshare_world:
 
 dmgshare_reset_static:
     type: command
+    debug: false
     name: resetdamage
     description: 데미지 통게 초기화
     usage: /resetdamage
@@ -31,6 +33,7 @@ dmgshare_reset_static:
         - run dmgshare_update_sidebar def.player:<[target]>
 
 dmgshare_update_sidebar:
+    debug: false
     type: task
     definitions: player
     script:

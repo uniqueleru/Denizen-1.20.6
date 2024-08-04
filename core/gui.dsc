@@ -33,7 +33,7 @@ main_gui_inventory:
     slots:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_share_damage] [] [main_gui_item_hpshow] [] [main_gui_item_share_inventory] [] [main_gui_item_random_pickup] []
-    - [] [] [main_gui_item_speedup] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] [] []
+    - [] [main_gui_item_speedup] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] [] [main_gui_item_block_mob] []
     - [] [main_gui_item_jump_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] [] [main_gui_item_weakness] []
     - [] [] [] [] [] [] [] [] []
 
@@ -63,6 +63,8 @@ main_gui_world:
             - run main_gui_toggle_task def.option:chain def.player:<player>
         - if <context.item> == <item[main_gui_item_one_inventory]>:
             - run main_gui_toggle_task def.option:one_inventory def.player:<player>
+        - if <context.item> == <item[main_gui_item_block_mob]>:
+            - run main_gui_toggle_task def.option:block_mob def.player:<player>
         - inventory open d:main_gui_inventory
 
 main_gui_item_share_damage:
@@ -173,4 +175,13 @@ main_gui_item_one_inventory:
     - <&f>
     - <&f> - <&7>인벤토리 한칸
     - <&f> - <&7>현재 상태: <&f><server.flag[one_inventory]>
+    - <&f>
+main_gui_item_block_mob:
+    type: item
+    material: diamond_ore
+    display name: <&b>블럭 몬스터화
+    lore:
+    - <&f>
+    - <&f> - <&7>블럭 몬스터화
+    - <&f> - <&7>현재 상태: <&f><server.flag[block_mob]>
     - <&f>
