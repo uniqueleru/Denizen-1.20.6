@@ -59,6 +59,10 @@ main_gui_world:
                 - define item chain
             - case main_gui_item_one_inventory:
                 - define item one_inventory
+                - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
+                    - run one_inventory_toggle_task def.toggle:on
+                - else if <server.flag[one_inventory]> == <server.flag[text_enabled]>:
+                    - run one_inventory_toggle_task def.toggle:off
             - case main_gui_item_block_mob:
                 - define item block_mob
             - case main_gui_item_invisible_mob:
