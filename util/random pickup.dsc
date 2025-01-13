@@ -1,5 +1,23 @@
+random_pickup_init:
+    type: world
+    events:
+        on scripts loaded:
+        - if !<server.has_flag[random_pickup]>:
+            - flag server random_pickup:<server.flag[text_disabled]>
+
+main_gui_item_random_pickup:
+    type: item
+    material: diamond
+    display name: <&6>아이템 랜덤 줍기
+    lore:
+    - <&f>
+    - <&f> - <&7>아이템 랜덤 줍기 여부를 결정합니다.
+    - <&f> - <&7>현재 상태: <server.flag[random_pickup]>
+    - <&f>
+
 random_pickup_event_handler:
     type: world
+    debug: false
     events:
         on player picks up item:
         - if <server.flag[random_pickup]> == <server.flag[text_disabled]>:

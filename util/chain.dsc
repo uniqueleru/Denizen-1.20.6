@@ -1,9 +1,26 @@
-chain_event_handler:
-    debug: false
+chain_init:
     type: world
     events:
+        on scripts loaded:
+        - if !<server.has_flag[chain]>:
+            - flag server chain:<server.flag[text_disabled]>
+
+main_gui_item_chain:
+    type: item
+    material: chain
+    display name: <&6>연결고리
+    lore:
+    - <&f>
+    - <&f> - <&7>너와 나의 연결고리(a.k.a. 강제협동)
+    - <&f> - <&7>현재 상태: <server.flag[chain]>
+    - <&f>
+
+chain_event_handler:
+    type: world
+    debug: false
+    events:
         on tick every:5:
-        - if <server.flag[chain]> == <&c>비활성화됨:
+        - if <server.flag[chain]> == <server.flag[text_disabled]>:
             - stop
         - if <server.flag[chain_damage_bypass]> > 0:
             - flag server chain_damage_bypass:--
@@ -14,9 +31,9 @@ chain_event_handler:
         - flag server chain_damage_bypass:4
 
 chain_give_damage:
-    debug: false
     type: task
     definitions: amount
+    debug: false
     script:
     - if <[amount]> <= 4:
         - define dmg 0
@@ -27,8 +44,8 @@ chain_give_damage:
     - actionbar "<&7>떨어진 정도: <&e><[amount].round_to[1]> <&f>| <&7>받는 대미지: <&c><[dmg].round_to[1]>" targets:<server.online_players>
 
 chain_get_average:
-    debug: false
     type: procedure
+    debug: false
     script:
     - define sum.x 0
     - define sum.y 0
@@ -43,8 +60,8 @@ chain_get_average:
     - determine <[avg]>
 
 chain_get_variance:
-    debug: false
     type: procedure
+    debug: false
     script:
     - define avg <proc[chain_get_average]>
     - define variance.x 0
@@ -66,8 +83,8 @@ chain_get_variance:
     - determine <[variance]>
 
 chain_get_final_value:
-    debug: false
     type: procedure
+    debug: false
     script:
     - define variance <proc[chain_get_variance]>
     - define finalValue 0

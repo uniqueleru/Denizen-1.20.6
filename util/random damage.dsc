@@ -1,8 +1,26 @@
-random_damage_world:
+random_damage_init:
     type: world
     events:
+        on scripts loaded:
+        - if !<server.has_flag[random_damage]>:
+            - flag server random_damage:<server.flag[text_disabled]>
+
+main_gui_item_random_damage:
+    type: item
+    material: diamond_sword
+    display name: <&5>랜덤 데미지
+    lore:
+    - <&f>
+    - <&f> - <&7>플레이어가 데미지를 랜덤한 값으로 받습니다.
+    - <&f> - <&7>현재 상태: <server.flag[random_damage]>
+    - <&f>
+
+random_damage_world:
+    type: world
+    debug: false
+    events:
         on player damaged:
-        - if <server.flag[random_damage]> == <&c>비활성화됨:
+        - if <server.flag[random_damage]> == <server.flag[text_disabled]>:
             - stop
         - define origin_damage <context.damage>
         - define random_num <util.random.decimal[1].to[30]>

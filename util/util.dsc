@@ -1,9 +1,14 @@
 init_prefix:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - flag server text_enabled:<&a>활성화됨
         - flag server text_disabled:<&c>비활성화됨
+        - if !<server.has_flag[tablist_hp_show]>:
+            - flag server tablist_hp_show:<server.flag[text_disabled]>
+        - if !<server.has_flag[invisible_mob]>:
+            - flag server invisible_mob:<server.flag[text_disabled]>
 
 command_edit_name:
     type: command
@@ -29,6 +34,7 @@ command_edit_name:
 
 tablist_world:
     type: world
+    debug: false
     events:
         on player joins:
         - run tablist_update_task def.player:<player> def.health:<player.health.round> delay:1t
@@ -44,6 +50,7 @@ tablist_world:
 tablist_update_task:
     type: task
     definitions: player|health
+    debug: false
     script:
     - define colorcode <&f>
     - if <[health]> >= 15:
@@ -59,6 +66,7 @@ tablist_update_task:
 
 join_event:
     type: world
+    debug: false
     events:
         on player joins:
         - if !<player.has_flag[tabname]>:
