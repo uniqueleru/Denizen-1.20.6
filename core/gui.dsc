@@ -33,8 +33,8 @@ main_gui_inventory:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_damage_share] [] [main_gui_item_inventory_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] []
     - [] [main_gui_item_mob_speedup] [] [main_gui_item_weakness] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] []
-    - [] [main_gui_item_block_mob] [] [main_gui_item_invisible_mob] [] [main_gui_item_hpshow] [] [main_gui_item_random_pickup] []
-    - [] [main_gui_item_jump_share] [] [] [] [] [] [] []
+    - [] [main_gui_item_block_mob] [] [main_gui_item_invisible_mob] [] [main_gui_item_random_jump] [] [main_gui_item_hpshow] []
+    - [] [main_gui_item_random_pickup] [] [main_gui_item_jump_share] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
 
 main_gui_world:
@@ -68,6 +68,10 @@ main_gui_world:
                 - define item block_mob
             - case main_gui_item_invisible_mob:
                 - define item invisible_mob
+            - case main_gui_item_random_jump:
+                - define item random_jump
+                - if <server.flag[random_jump]> == <server.flag[text_enabled]>:
+                    - run random_jump_off_task
             - case main_gui_item_hpshow:
                 - define item tablist_hp_show
             - case main_gui_item_random_pickup:
