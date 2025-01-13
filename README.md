@@ -5,7 +5,7 @@ https://www.youtube.com/@이루05/
 
 ---
 
-### ※ 이 아래부터는 fork repository의 내용입니다.
+### ※ 이 아래부터는 forked repository의 내용입니다.
 
 ## 커맨드
 

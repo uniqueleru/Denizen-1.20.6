@@ -7,8 +7,6 @@ init_prefix:
         - flag server text_disabled:<&c>비활성화됨
         - if !<server.has_flag[tablist_hp_show]>:
             - flag server tablist_hp_show:<&c>비활성화됨
-        - if !<server.has_flag[invisible_mob]>:
-            - flag server invisible_mob:<&c>비활성화됨
 
 main_gui_item_hpshow:
     type: item

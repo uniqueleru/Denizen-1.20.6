@@ -42,7 +42,8 @@ main_gui_world:
     debug: false
     events:
         on player clicks in main_gui_inventory:
-        - choose <context.item.script.name>:
+        - define item null
+        - choose <context.item.script.name||null>:
             - case main_gui_item_damage_share:
                 - define item damage_share
             - case main_gui_item_inventory_share:
@@ -73,16 +74,6 @@ main_gui_world:
                 - define item random_pickup
             - case main_gui_item_jump_share:
                 - define item jump_share
-        - run main_gui_toggle_task def.option:<[item]> def.player:<player>
+        - if <[item]> != null:
+            - run main_gui_toggle_task def.option:<[item]> def.player:<player>
         - inventory open d:main_gui_inventory
-
-
-main_gui_item_invisible_mob:
-    type: item
-    material: potion
-    display name: <&b>몹 투명화
-    lore:
-    - <&f>
-    - <&f> - <&7>몹 투명화
-    - <&f> - <&7>현재 상태: <&f><server.flag[invisible_mob]>
-    - <&f>
