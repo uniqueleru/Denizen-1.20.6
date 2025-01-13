@@ -1,9 +1,10 @@
 one_inventory_init:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - if !<server.has_flag[one_inventory]>:
-            - flag server one_inventory:<server.flag[text_disabled]>
+            - flag server one_inventory:<&c>비활성화됨
 
 main_gui_item_one_inventory:
     type: item

@@ -1,9 +1,10 @@
 jump_share_init:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - if !<server.has_flag[jump_share]>:
-            - flag server jump_share:<server.flag[text_disabled]>
+            - flag server jump_share:<&c>비활성화됨
 
 main_gui_item_jump_share:
     type: item
@@ -27,6 +28,7 @@ jump_share_world:
 jump_share_task:
     type: task
     definitions: origin
+    debug: false
     script:
     - foreach <server.online_players> as:target:
         - if <[origin]> == <[target]>:

@@ -1,9 +1,10 @@
 weakness_init:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - if !<server.has_flag[weakness]>:
-            - flag server weakness:<server.flag[text_disabled]>
+            - flag server weakness:<&c>비활성화됨
 
 main_gui_item_weakness:
     type: item

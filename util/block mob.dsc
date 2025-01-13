@@ -1,9 +1,10 @@
 block_mob_init:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - if !<server.has_flag[block_mob]>:
-            - flag server block_mob:<server.flag[text_disabled]>
+            - flag server block_mob:<&c>비활성화됨
 
 main_gui_item_block_mob:
     type: item
@@ -11,7 +12,7 @@ main_gui_item_block_mob:
     display name: <&b>블럭 몬스터화
     lore:
     - <&f>
-    - <&f> - <&7>블럭을 캐면 가끔 몬스터화된다.
+    - <&f> - <&7>블럭을 캐면 가끔 몬스터화됩니다.
     - <&f> - <&e>주의: 서버 버전에 맞는 Lib's Disguises
     - <&f>   <&e>플러그인이 있어야 작동합니다.
     - <&f> - <&7>현재 상태: <server.flag[block_mob]>

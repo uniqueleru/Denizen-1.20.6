@@ -1,9 +1,10 @@
 chain_init:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - if !<server.has_flag[chain]>:
-            - flag server chain:<server.flag[text_disabled]>
+            - flag server chain:<&c>비활성화됨
 
 main_gui_item_chain:
     type: item

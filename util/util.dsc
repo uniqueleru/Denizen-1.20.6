@@ -6,9 +6,20 @@ init_prefix:
         - flag server text_enabled:<&a>활성화됨
         - flag server text_disabled:<&c>비활성화됨
         - if !<server.has_flag[tablist_hp_show]>:
-            - flag server tablist_hp_show:<server.flag[text_disabled]>
+            - flag server tablist_hp_show:<&c>비활성화됨
         - if !<server.has_flag[invisible_mob]>:
-            - flag server invisible_mob:<server.flag[text_disabled]>
+            - flag server invisible_mob:<&c>비활성화됨
+
+main_gui_item_hpshow:
+    type: item
+    material: golden_apple
+    display name: <&a>탭 리스트 HP 표시
+    lore:
+    - <&f>
+    - <&f> - <&7>탭 리스트에 HP를 표시합니다.
+    - <&f> - <&e>주의: 재접속 시 반영됩니다.
+    - <&f> - <&7>현재 상태: <server.flag[tablist_hp_show]>
+    - <&f>
 
 command_edit_name:
     type: command
@@ -20,6 +31,7 @@ command_edit_name:
     tab completions:
         1: change|reset
         2: <server.online_players.parse[name]>
+    debug: false
     script:
     - choose <context.args.first>:
         - case change:

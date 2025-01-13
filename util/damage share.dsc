@@ -1,9 +1,10 @@
 damage_share_init:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - if !<server.has_flag[damage_share]>:
-            - flag server damage_share:<server.flag[text_disabled]>
+            - flag server damage_share:<&c>비활성화됨
 
 main_gui_item_damage_share:
     type: item
@@ -11,7 +12,7 @@ main_gui_item_damage_share:
     display name: <&c>데미지 공유
     lore:
     - <&f>
-    - <&f> - <&7>플레이어간 데미지 공유가 공유됩니다.
+    - <&f> - <&7>플레이어간 데미지가 공유됩니다.
     - <&f> - <&7>현재 상태: <server.flag[damage_share]>
     - <&f>
 

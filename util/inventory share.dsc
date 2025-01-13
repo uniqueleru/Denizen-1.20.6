@@ -1,9 +1,10 @@
 inventory_share_init:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - if !<server.has_flag[inventory_share]>:
-            - flag server inventory_share:<server.flag[text_disabled]>
+            - flag server inventory_share:<&c>비활성화됨
 
 main_gui_item_inventory_share:
     type: item

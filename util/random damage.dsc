@@ -1,9 +1,10 @@
 random_damage_init:
     type: world
+    debug: false
     events:
         on scripts loaded:
         - if !<server.has_flag[random_damage]>:
-            - flag server random_damage:<server.flag[text_disabled]>
+            - flag server random_damage:<&c>비활성화됨
 
 main_gui_item_random_damage:
     type: item

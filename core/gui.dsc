@@ -39,7 +39,7 @@ main_gui_inventory:
 
 main_gui_world:
     type: world
-    debug: true
+    debug: false
     events:
         on player clicks in main_gui_inventory:
         - choose <context.item.script.name>:
@@ -72,16 +72,6 @@ main_gui_world:
         - run main_gui_toggle_task def.option:<[item]> def.player:<player>
         - inventory open d:main_gui_inventory
 
-
-main_gui_item_hpshow:
-    type: item
-    material: golden_apple
-    display name: <&a>탭 리스트 HP 표시
-    lore:
-    - <&f>
-    - <&f> - <&7>탭 리스트 HP 표시 여부를 결정합니다.
-    - <&f> - <&7>현재 상태: <&f><server.flag[tablist_hp_show]>
-    - <&f>
 
 main_gui_item_invisible_mob:
     type: item
