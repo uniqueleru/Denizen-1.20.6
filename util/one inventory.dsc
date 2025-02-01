@@ -70,6 +70,7 @@ one_inventory_toggle_task:
 fill_slot_task:
     type: task
     definitions: target
+    debug: false
     script:
     - repeat 36 as:count:
         - if <[count]> != 5:

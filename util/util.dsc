@@ -46,14 +46,14 @@ tablist_world:
     type: world
     debug: false
     events:
-        on player joins:
+        after player joins:
         - run tablist_update_task def.player:<player> def.health:<player.health.round> delay:1t
-        on player damaged:
+        after player damaged:
         - define player <context.entity>
         - run tablist_update_task def.player:<[player]> def.health:<[player].health.round> delay:1t
-        on player respawns:
+        after player respawns:
         - run tablist_update_task def.player:<player> def.health:<player.health.round> delay:1t
-        on player heals:
+        after player heals:
         - define player <context.entity>
         - run tablist_update_task def.player:<[player]> def.health:<[player].health.round> delay:1t
 
@@ -78,6 +78,19 @@ join_event:
     type: world
     debug: false
     events:
-        on player joins:
+        after player joins:
         - if !<player.has_flag[tabname]>:
             - flag <player> tabname:<player.name>
+
+test_command:
+    type: command
+    name: test
+    description: 테스트용
+    usage: /test
+    debug: false
+    script:
+    - foreach <player.location.find.living_entities.within[2]> as:entity:
+        - if <[entity]> == <player>:
+            - foreach next
+        - narrate "기본: <[entity].attribute_default_value[generic_follow_range]>"
+        - narrate "현재: <[entity].attribute_value[generic_follow_range]>"

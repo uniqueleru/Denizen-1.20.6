@@ -8,7 +8,7 @@ option_menu_command:
     usage: /optiongui
     debug: false
     script:
-    - inventory open d:main_gui_inventory
+    - inventory open d:main_gui_inventory_1
 
 main_gui_toggle_task:
     type: task
@@ -23,7 +23,7 @@ main_gui_toggle_task:
         - flag server <[option]>:<[disabled]>
     - playsound <[player]> sound:ENTITY_EXPERIENCE_ORB_PICKUP pitch:1
 
-main_gui_inventory:
+main_gui_inventory_1:
     type: inventory
     inventory: CHEST
     title: 월드 옵션 토글
@@ -33,15 +33,29 @@ main_gui_inventory:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_damage_share] [] [main_gui_item_inventory_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] []
     - [] [main_gui_item_mob_speedup] [] [main_gui_item_weakness] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] []
-    - [] [main_gui_item_block_mob] [] [main_gui_item_invisible_mob] [] [main_gui_item_random_jump] [] [main_gui_item_hpshow] []
-    - [] [main_gui_item_random_pickup] [] [main_gui_item_jump_share] [] [] [] [] []
+    - [] [] [] [] [] [main_gui_item_invisible_mob] [] [main_gui_item_random_jump] []
     - [] [] [] [] [] [] [] [] []
+    - [] [] [main_gui_item_first_page] [] [] [] [main_gui_item_next_page] [] []
+
+main_gui_inventory_2:
+    type: inventory
+    inventory: CHEST
+    title: 월드 옵션 토글
+    size: 54
+    gui: true
+    slots:
+    - [] [] [] [] [] [] [] [] []
+    - [] [main_gui_item_hpshow] [] [main_gui_item_random_pickup] [] [main_gui_item_jump_share] [] [] []
+    - [] [] [] [] [] [] [] [] []
+    - [] [] [] [] [] [] [] [] []
+    - [] [] [] [] [] [] [] [] []
+    - [] [] [main_gui_item_prev_page] [] [] [] [main_gui_item_last_page] [] []
 
 main_gui_world:
     type: world
     debug: false
     events:
-        on player clicks in main_gui_inventory:
+        on player clicks in main_gui_inventory_1:
         - define item null
         - choose <context.item.script.name||null>:
             - case main_gui_item_damage_share:
@@ -52,8 +66,16 @@ main_gui_world:
                 - define item random_damage
             - case main_gui_item_mob_downscale:
                 - define item mob_downscale
+                - if <server.flag[mob_downscale]> == <server.flag[text_disabled]>:
+                    - run mob_downscale_toggle_task def.toggle:on
+                - else if <server.flag[mob_downscale]> == <server.flag[text_enabled]>:
+                    - run mob_downscale_toggle_task def.toggle:off
             - case main_gui_item_mob_speedup:
                 - define item mob_speedup
+                - if <server.flag[mob_speedup]> == <server.flag[text_disabled]>:
+                    - run mob_speedup_toggle_task def.toggle:on
+                - else if <server.flag[mob_speedup]> == <server.flag[text_enabled]>:
+                    - run mob_speedup_toggle_task def.toggle:off
             - case main_gui_item_weakness:
                 - define item weakness
             - case main_gui_item_chain:
@@ -64,20 +86,49 @@ main_gui_world:
                     - run one_inventory_toggle_task def.toggle:on
                 - else if <server.flag[one_inventory]> == <server.flag[text_enabled]>:
                     - run one_inventory_toggle_task def.toggle:off
-            - case main_gui_item_block_mob:
-                - define item block_mob
             - case main_gui_item_invisible_mob:
                 - define item invisible_mob
             - case main_gui_item_random_jump:
                 - define item random_jump
                 - if <server.flag[random_jump]> == <server.flag[text_enabled]>:
                     - run random_jump_off_task
+            - case main_gui_item_next_page:
+                - inventory open d:main_gui_inventory_2
+        - if <[item]> != null:
+            - run main_gui_toggle_task def.option:<[item]> def.player:<player>
+            - inventory open d:main_gui_inventory_1
+
+        on player clicks in main_gui_inventory_2:
+        - define item null
+        - choose <context.item.script.name||null>:
             - case main_gui_item_hpshow:
                 - define item tablist_hp_show
             - case main_gui_item_random_pickup:
                 - define item random_pickup
             - case main_gui_item_jump_share:
                 - define item jump_share
+            - case main_gui_item_prev_page:
+                - inventory open d:main_gui_inventory_1
         - if <[item]> != null:
             - run main_gui_toggle_task def.option:<[item]> def.player:<player>
-        - inventory open d:main_gui_inventory
+            - inventory open d:main_gui_inventory_2
+
+main_gui_item_prev_page:
+    type: item
+    material: paper
+    display name: 이전 장
+
+main_gui_item_next_page:
+    type: item
+    material: paper
+    display name: 다음 장
+
+main_gui_item_first_page:
+    type: item
+    material: barrier
+    display name: 첫 장
+
+main_gui_item_last_page:
+    type: item
+    material: barrier
+    display name: 마지막 장

@@ -10,6 +10,9 @@ main_gui_item_invisible_mob:
     type: item
     material: potion
     display name: <&b>몹 투명화
+    mechanisms:
+        potion_effects:
+            base_type: invisibility
     lore:
     - <&f>
     - <&f> - <&7>몹 투명화

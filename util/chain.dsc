@@ -5,6 +5,7 @@ chain_init:
         on scripts loaded:
         - if !<server.has_flag[chain]>:
             - flag server chain:<&c>비활성화됨
+        - flag server chain_damage_bypass:0
 
 main_gui_item_chain:
     type: item
@@ -23,6 +24,8 @@ chain_event_handler:
         on tick every:5:
         - if <server.flag[chain]> == <server.flag[text_disabled]>:
             - stop
+        - if <server.online_players.size> < 2:
+            - stop
         - if <server.flag[chain_damage_bypass]> > 0:
             - flag server chain_damage_bypass:--
             - stop
@@ -36,7 +39,7 @@ chain_give_damage:
     definitions: amount
     debug: false
     script:
-    - if <[amount]> <= 4:
+    - if <[amount]> <= 6:
         - define dmg 0
     - else:
         - define dmg <[amount].div[2]>
