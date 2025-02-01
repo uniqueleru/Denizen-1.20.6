@@ -88,6 +88,8 @@ main_gui_world:
                     - run one_inventory_toggle_task def.toggle:off
             - case main_gui_item_invisible_mob:
                 - define item invisible_mob
+                - if <server.flag[invisible_mob]> == <server.flag[text_enabled]>:
+                    - run invisible_mob_off_task
             - case main_gui_item_random_jump:
                 - define item random_jump
                 - if <server.flag[random_jump]> == <server.flag[text_enabled]>:
