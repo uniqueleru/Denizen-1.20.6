@@ -8,11 +8,11 @@ inventory_share_init:
 
 main_gui_item_inventory_share:
     type: item
-    material: chest
+    material: ender_chest
     display name: <&e>인벤토리 공유
     lore:
     - <&f>
-    - <&f> - <&7>플레이어간 인벤토리를 공유합니다.
+    - <&f> - <&7>플레이어 간 인벤토리를 공유합니다.
     - <&f> - <&7>현재 상태: <server.flag[inventory_share]>
     - <&f>
 

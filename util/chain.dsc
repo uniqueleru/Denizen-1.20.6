@@ -13,7 +13,7 @@ main_gui_item_chain:
     display name: <&6>연결고리
     lore:
     - <&f>
-    - <&f> - <&7>너와 나의 연결고리(a.k.a. 강제협동)
+    - <&f> - <&7>너와 나의 연결고리(a.k.a. 강제 협동)
     - <&f> - <&7>현재 상태: <server.flag[chain]>
     - <&f>
 

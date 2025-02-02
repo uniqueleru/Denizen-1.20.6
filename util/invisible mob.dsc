@@ -13,6 +13,7 @@ main_gui_item_invisible_mob:
     mechanisms:
         potion_effects:
             base_type: invisibility
+        hides: ALL
     lore:
     - <&f>
     - <&f> - <&7>모든 몹이 투명 효과를 갖게 됩니다.

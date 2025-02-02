@@ -33,7 +33,7 @@ main_gui_inventory_1:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_damage_share] [] [main_gui_item_inventory_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] []
     - [] [main_gui_item_mob_speedup] [] [main_gui_item_weakness] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] []
-    - [] [] [] [] [] [main_gui_item_invisible_mob] [] [main_gui_item_random_jump] []
+    - [] [main_gui_item_mob_spawnlimit] [] [main_gui_item_fast_tick] [] [main_gui_item_invisible_mob] [] [main_gui_item_random_jump] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [main_gui_item_first_page] [] [] [] [main_gui_item_next_page] [] []
 
@@ -60,42 +60,67 @@ main_gui_world:
         - choose <context.item.script.name||null>:
             - case main_gui_item_damage_share:
                 - define item damage_share
+
             - case main_gui_item_inventory_share:
                 - define item inventory_share
+
             - case main_gui_item_random_damage:
                 - define item random_damage
+
             - case main_gui_item_mob_downscale:
                 - define item mob_downscale
                 - if <server.flag[mob_downscale]> == <server.flag[text_disabled]>:
                     - run mob_downscale_toggle_task def.toggle:on
                 - else if <server.flag[mob_downscale]> == <server.flag[text_enabled]>:
                     - run mob_downscale_toggle_task def.toggle:off
+
             - case main_gui_item_mob_speedup:
                 - define item mob_speedup
                 - if <server.flag[mob_speedup]> == <server.flag[text_disabled]>:
                     - run mob_speedup_toggle_task def.toggle:on
                 - else if <server.flag[mob_speedup]> == <server.flag[text_enabled]>:
                     - run mob_speedup_toggle_task def.toggle:off
+
             - case main_gui_item_weakness:
                 - define item weakness
+
             - case main_gui_item_chain:
                 - define item chain
+
             - case main_gui_item_one_inventory:
                 - define item one_inventory
                 - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
                     - run one_inventory_toggle_task def.toggle:on
                 - else if <server.flag[one_inventory]> == <server.flag[text_enabled]>:
                     - run one_inventory_toggle_task def.toggle:off
+
+            - case main_gui_item_mob_spawnlimit:
+                - define item mob_spawnlimit
+                - if <server.flag[mob_spawnlimit]> == <server.flag[text_disabled]>:
+                    - run mob_spawnlimit_toggle_task def.toggle:on
+                - else if <server.flag[mob_spawnlimit]> == <server.flag[text_enabled]>:
+                    - run mob_spawnlimit_toggle_task def.toggle:off
+
+            - case main_gui_item_fast_tick:
+                - define item fast_tick
+                - if <server.flag[fast_tick]> == <server.flag[text_disabled]>:
+                    - run fast_tick_toggle_task def.toggle:on
+                - else if <server.flag[fast_tick]> == <server.flag[text_enabled]>:
+                    - run fast_tick_toggle_task def.toggle:off
+
             - case main_gui_item_invisible_mob:
                 - define item invisible_mob
                 - if <server.flag[invisible_mob]> == <server.flag[text_enabled]>:
                     - run invisible_mob_off_task
+
             - case main_gui_item_random_jump:
                 - define item random_jump
                 - if <server.flag[random_jump]> == <server.flag[text_enabled]>:
                     - run random_jump_off_task
+
             - case main_gui_item_next_page:
                 - inventory open d:main_gui_inventory_2
+
         - if <[item]> != null:
             - run main_gui_toggle_task def.option:<[item]> def.player:<player>
             - inventory open d:main_gui_inventory_1

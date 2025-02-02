@@ -12,7 +12,7 @@ main_gui_item_jump_share:
     display name: <&3>점프 공유
     lore:
     - <&f>
-    - <&f> - <&7>플레이어간 점프를 공유합니다.
+    - <&f> - <&7>플레이어 간 점프를 공유합니다.
     - <&f> - <&7>현재 상태: <server.flag[jump_share]>
     - <&f>
 

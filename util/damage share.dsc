@@ -12,7 +12,7 @@ main_gui_item_damage_share:
     display name: <&c>데미지 공유
     lore:
     - <&f>
-    - <&f> - <&7>플레이어간 데미지가 공유됩니다.
+    - <&f> - <&7>플레이어 간 데미지가 공유됩니다.
     - <&f> - <&7>현재 상태: <server.flag[damage_share]>
     - <&f>
 
