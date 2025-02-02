@@ -28,10 +28,10 @@ random_jump_world:
         - define rand <util.random.int[1].to[100]>
         # 60%로 확률로 강화 0단계
         - if <[rand].is_more_than[40]>:
-            - define power <util.random.decimal[0.25].to[0.7]>
+            - define power <util.random.decimal[0.2].to[0.6]>
         # 25% 확률로 강화 1단계
         - else if <[rand].is_more_than[15]>:
-            - define power <util.random.decimal[0.7].to[1.4]>
+            - define power <util.random.decimal[0.6].to[1.4]>
         # 10% 확률로 강화 2단계
         - else if <[rand].is_more_than[5]>:
             - define power <util.random.decimal[1.4].to[2.6]>

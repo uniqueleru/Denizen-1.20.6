@@ -7,6 +7,8 @@ init_prefix:
         - flag server text_disabled:<&c>비활성화됨
         - if !<server.has_flag[tablist_hp_show]>:
             - flag server tablist_hp_show:<&c>비활성화됨
+        - if !<server.has_flag[keybind]>:
+            - flag server keybind:false
 
 main_gui_item_hpshow:
     type: item
@@ -82,15 +84,25 @@ join_event:
         - if !<player.has_flag[tabname]>:
             - flag <player> tabname:<player.name>
 
-test_command:
+keybind_command:
     type: command
-    name: test
-    description: 테스트용
-    usage: /test
+    name: keybind
+    description: Shift + F로 열기
+    usage: /keybind
     debug: false
     script:
-    - foreach <player.location.find.living_entities.within[2]> as:entity:
-        - if <[entity]> == <player>:
-            - foreach next
-        - narrate "기본: <[entity].attribute_default_value[generic_follow_range]>"
-        - narrate "현재: <[entity].attribute_value[generic_follow_range]>"
+    - if <server.flag[keybind]>:
+        - flag server keybind:false
+    - else:
+        - flag server keybind:true
+
+keybind:
+    type: world
+    debug: false
+    events:
+        on player swaps items:
+        - if !<server.flag[keybind]>:
+            - stop
+        - if <player.is_sneaking>:
+            - inventory open d:main_gui_inventory_1
+            - determine cancelled

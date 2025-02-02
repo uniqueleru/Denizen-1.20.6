@@ -11,7 +11,7 @@ fast_tick_init:
 main_gui_item_fast_tick:
     type: item
     material: clock
-    display name: <&5>빨리 감기
+    display name: <&d>빨리 감기
     lore:
     - <&f>
     - <&f> - <&7>게임 시간이 매우 빠르게 흐릅니다.

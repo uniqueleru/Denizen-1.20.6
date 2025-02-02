@@ -9,7 +9,7 @@ weakness_init:
 main_gui_item_weakness:
     type: item
     material: wooden_sword
-    display name: <&2>나약화
+    display name: <&8>나약화
     lore:
     - <&f>
     - <&f> - <&7>플레이어가 주는 데미지가 항상 1이 됩니다.

@@ -9,7 +9,7 @@ mob_speedup_init:
 main_gui_item_mob_speedup:
     type: item
     material: feather
-    display name: <&6>몬스터 속도 증가
+    display name: <&9>몬스터 속도 증가
     lore:
     - <&f>
     - <&f> - <&7>몬스터의 속도가 크게 증가합니다.

@@ -9,7 +9,7 @@ one_inventory_init:
 main_gui_item_one_inventory:
     type: item
     material: chest
-    display name: <&c>인벤토리 한 칸
+    display name: <&2>인벤토리 한 칸
     lore:
     - <&f>
     - <&f> - <&7>인벤토리가 한 칸이 됩니다.

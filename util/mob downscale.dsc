@@ -9,7 +9,7 @@ mob_downscale_init:
 main_gui_item_mob_downscale:
     type: item
     material: slime_ball
-    display name: <&b>몬스터 소형화
+    display name: <&a>몬스터 소형화
     lore:
     - <&f>
     - <&f> - <&7>몬스터가 소형화됩니다.
