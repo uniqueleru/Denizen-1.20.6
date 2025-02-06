@@ -25,7 +25,7 @@ mob_spawnlimit_toggle_task:
     script:
     - if <[toggle]> == on:
         - foreach <server.worlds> as:world:
-            - adjust <[world]> monster_spawn_limit:1400
+            - adjust <[world]> monster_spawn_limit:7000
     - else if <[toggle]> == off:
         - foreach <server.worlds> as:world:
             - adjust <[world]> monster_spawn_limit:70

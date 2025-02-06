@@ -25,7 +25,7 @@ block_mob_block_break:
         on block drops item from breaking:
         - if <server.flag[block_mob]> == <server.flag[text_disabled]>:
             - stop
-        - if <util.random_chance[100]>:
+        - if <util.random_chance[3]>:
             - run block_mob_summon def.targ:<player> def.loc:<context.location> def.type:<context.material>
         - if <util.random_chance[0.3]>:
             - repeat 30:
