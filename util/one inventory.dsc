@@ -35,6 +35,9 @@ one_inventory_world:
         on player swaps items:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
+        # keybind 충돌 방지 (util.dsc의 util_keybind_world 참고)
+        - if ( <server.flag[keybind]> && <player.is_sneaking> ):
+            - inventory open d:main_gui_inventory_1
         - determine cancelled
         on player drops util_empty_slot:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
