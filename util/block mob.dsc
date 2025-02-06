@@ -12,9 +12,9 @@ main_gui_item_block_mob:
     display name: <&b>블럭 몬스터화
     lore:
     - <&f>
-    - <&f> - <&7>블럭을 캐면 가끔 몬스터화됩니다.
-    - <&f> - <&e>주의: 서버 버전에 맞는 Lib's Disguises
-    - <&f>   <&e>플러그인이 있어야 작동합니다.
+    - <&f> - <&7>블럭을 캐면 일정 확률로 몬스터화됩니다.
+    - <&f> - <&e>주의: Depenizen과 Lib's Disguises,
+    - <&f>   <&e>ProtocolLib 플러그인이 필요합니다.
     - <&f> - <&7>현재 상태: <server.flag[block_mob]>
     - <&f>
 
@@ -25,7 +25,7 @@ block_mob_block_break:
         on block drops item from breaking:
         - if <server.flag[block_mob]> == <server.flag[text_disabled]>:
             - stop
-        - if <util.random_chance[3]>:
+        - if <util.random_chance[100]>:
             - run block_mob_summon def.targ:<player> def.loc:<context.location> def.type:<context.material>
         - if <util.random_chance[0.3]>:
             - repeat 30:
@@ -35,13 +35,16 @@ block_mob_death_event:
     type: world
     debug: false
     events:
-        on entity dies:
+        on player dies:
         - if <server.flag[block_mob]> == <server.flag[text_disabled]>:
             - stop
-        - if <context.damager.libsdisguise_is_disguised>:
-            - if <context.damager.entity_type> == creeper:
+        - define damager <context.damager||null>
+        - if <[damager]> == null:
+            - stop
+        - if <[damager].libsdisguise_is_disguised>:
+            - if <[damager].entity_type> == creeper:
                 - determine "<context.entity.name>이(가) 블럭에게 폭파당했습니다"
-            - else if <context.damager.entity_type> == skeleton:
+            - else if <[damager].entity_type> == skeleton:
                 - determine "<context.entity.name>이(가) 블럭에게 저격당했습니다"
             - else:
                 - determine "<context.entity.name>이(가) 블럭에게 살해당했습니다"
@@ -82,8 +85,8 @@ block_mob_make_random_hp:
     debug: false
     script:
     - define random_num <util.random.int[1].to[50]>
-    - adjust <[ent]> max_health:<[random_num]>
     #- announce "hp: <[random_num]>"
+    - adjust <[ent]> max_health:<[random_num]>
     - heal <[ent]>
 
 block_mob_make_random_speed:
@@ -101,6 +104,6 @@ block_mob_make_random_damage:
     debug: false
     script:
     - define random_num <util.random.int[1].to[15]>
-    #- announce "dmg: <[random_num]>"
-    - if <[ent].entity_type> != creeper:
-        - adjust <[ent]> attribute_base_values:[generic.attack_damage=<[random_num]>]
+    - if <[ent].has_attribute[generic_attack_damage]>:
+        #- announce "dmg: <[random_num]>"
+        - adjust <[ent]> attribute_base_values:[generic_attack_damage=<[random_num]>]

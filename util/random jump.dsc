@@ -11,7 +11,7 @@ random_jump_init:
 main_gui_item_random_jump:
     type: item
     material: golden_boots
-    display name: <&3>랜덤 점프
+    display name: <&5>랜덤 점프
     lore:
     - <&f>
     - <&f> - <&7>매번 점프의 강도가 랜덤으로 정해집니다.

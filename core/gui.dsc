@@ -33,7 +33,7 @@ main_gui_inventory_1:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_damage_share] [] [main_gui_item_inventory_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] []
     - [] [main_gui_item_mob_speedup] [] [main_gui_item_weakness] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] []
-    - [] [main_gui_item_mob_spawnlimit] [] [main_gui_item_fast_tick] [] [main_gui_item_invisible_mob] [] [main_gui_item_random_jump] []
+    - [] [main_gui_item_mob_spawnlimit] [] [main_gui_item_fast_tick] [] [main_gui_item_block_mob] [] [main_gui_item_invisible_mob] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [main_gui_item_first_page] [] [] [] [main_gui_item_next_page] [] []
 
@@ -45,7 +45,7 @@ main_gui_inventory_2:
     gui: true
     slots:
     - [] [] [] [] [] [] [] [] []
-    - [] [main_gui_item_hpshow] [] [main_gui_item_random_pickup] [] [main_gui_item_jump_share] [] [] []
+    - [] [main_gui_item_random_jump] [] [main_gui_item_jump_share] [] [main_gui_item_random_pickup] [] [main_gui_item_hpshow] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
@@ -108,15 +108,13 @@ main_gui_world:
                 - else if <server.flag[fast_tick]> == <server.flag[text_enabled]>:
                     - run fast_tick_toggle_task def.toggle:off
 
+            - case main_gui_item_block_mob:
+                - define item block_mob
+
             - case main_gui_item_invisible_mob:
                 - define item invisible_mob
                 - if <server.flag[invisible_mob]> == <server.flag[text_enabled]>:
                     - run invisible_mob_off_task
-
-            - case main_gui_item_random_jump:
-                - define item random_jump
-                - if <server.flag[random_jump]> == <server.flag[text_enabled]>:
-                    - run random_jump_off_task
 
             - case main_gui_item_next_page:
                 - inventory open d:main_gui_inventory_2
@@ -128,16 +126,21 @@ main_gui_world:
         on player clicks in main_gui_inventory_2:
         - define item null
         - choose <context.item.script.name||null>:
-            - case main_gui_item_hpshow:
-                - define item tablist_hp_show
-                - foreach <server.online_players> as:player:
-                    - run tablist_update_task def.player:<[player]> def.health:<[player].health.round> delay:1t
+            - case main_gui_item_random_jump:
+                - define item random_jump
+                - if <server.flag[random_jump]> == <server.flag[text_enabled]>:
+                    - run random_jump_off_task
 
             - case main_gui_item_random_pickup:
                 - define item random_pickup
 
             - case main_gui_item_jump_share:
                 - define item jump_share
+
+            - case main_gui_item_hpshow:
+                - define item tablist_hp_show
+                - foreach <server.online_players> as:player:
+                    - run tablist_update_task def.player:<[player]> def.health:<[player].health.round> delay:1t
 
             - case main_gui_item_prev_page:
                 - inventory open d:main_gui_inventory_1
