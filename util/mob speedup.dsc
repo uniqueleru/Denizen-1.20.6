@@ -16,7 +16,7 @@ main_gui_item_mob_speedup:
     - <&f> - <&7>현재 상태: <server.flag[mob_speedup]>
     - <&f>
 
-mob_speedup:
+mob_speedup_world:
     type: world
     debug: false
     events:

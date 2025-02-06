@@ -31,17 +31,17 @@ one_inventory_world:
         after player dies:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
-        - run fill_slot_task def.target:<player>
+        - run one_inventory_fill_slot def.target:<player>
         on player swaps items:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
         - determine cancelled
-        on player drops empty_slot:
+        on player drops util_empty_slot:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
         - narrate "<&7>그건 상우의 영혼이 깃들어 버릴 수 없는 물건이다"
         - determine cancelled
-        on player clicks empty_slot in inventory:
+        on player clicks util_empty_slot in inventory:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
         - determine cancelled
@@ -50,11 +50,11 @@ one_inventory_world:
             - stop
         - if ( <context.inventory> == <player.inventory> && ( <context.raw_slot> == 46 ) ):
             - determine cancelled
-        on player drags empty_slot in inventory:
+        on player drags util_empty_slot in inventory:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
         - determine cancelled
-        on player places empty_slot:
+        on player places util_empty_slot:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
         - narrate "<&7>너무나 당연하게도 이건 설치할 수 없다"
@@ -67,14 +67,14 @@ one_inventory_toggle_task:
     script:
     - if <[toggle]> == on:
         - foreach <server.online_players> as:players:
-                - run fill_slot_task def.target:<[players]>
+                - run one_inventory_fill_slot def.target:<[players]>
     - else if <[toggle]> == off:
         - foreach <server.online_players> as:players:
                 - repeat 36 as:count:
                     - if <[count]> != 5:
                         - inventory set d:<[players].inventory> slot:<[count]> o:air
 
-fill_slot_task:
+one_inventory_fill_slot:
     type: task
     definitions: target
     debug: false
@@ -83,11 +83,6 @@ fill_slot_task:
         - if <[count]> != 5:
             - define saved <[target].inventory.slot[<[count]>]>
             - drop <[saved]> <[target].location>
-            - inventory set d:<[target].inventory> slot:<[count]> o:empty_slot
+            - inventory set d:<[target].inventory> slot:<[count]> o:util_empty_slot
     - drop <[target].item_in_offhand||null> <[target].location>
     - adjust <[target]> item_in_offhand:air
-
-empty_slot:
-    type: item
-    material: light_gray_stained_glass_pane
-    display name: ' '

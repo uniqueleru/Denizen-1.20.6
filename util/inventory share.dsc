@@ -16,21 +16,21 @@ main_gui_item_inventory_share:
     - <&f> - <&7>현재 상태: <server.flag[inventory_share]>
     - <&f>
 
-inventory_share_event_handler:
+inventory_share_world:
     type: world
     debug: false
     events:
         after player picks up item:
-        - run copy_inventory_data def.origin:<player>
+        - run inventory_share_copy def.origin:<player>
         after player clicks in inventory:
-        - run copy_inventory_data def.origin:<player>
+        - run inventory_share_copy def.origin:<player>
         after player drops item:
-        - run copy_inventory_data def.origin:<player>
+        - run inventory_share_copy def.origin:<player>
         after player dies:
-        - run delete_inventory_on_death def.origin:<player>
+        - run inventory_share_clear def.origin:<player>
 
 
-delete_inventory_on_death:
+inventory_share_clear:
     type: task
     definitions: origin
     debug: false
@@ -46,7 +46,7 @@ delete_inventory_on_death:
                 - define slot:+:9
                 - inventory set d:<[target].inventory> slot:<[slot]> o:air
 
-copy_inventory_data:
+inventory_share_copy:
     type: task
     definitions: origin
     debug: false

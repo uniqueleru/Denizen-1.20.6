@@ -35,7 +35,7 @@ main_gui_inventory_1:
     - [] [main_gui_item_mob_speedup] [] [main_gui_item_weakness] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] []
     - [] [main_gui_item_mob_spawnlimit] [] [main_gui_item_fast_tick] [] [main_gui_item_block_mob] [] [main_gui_item_invisible_mob] []
     - [] [] [] [] [] [] [] [] []
-    - [] [] [main_gui_item_first_page] [] [] [] [main_gui_item_next_page] [] []
+    - [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_first_page] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_next_page] [main_gui_item_bar] [main_gui_item_bar]
 
 main_gui_inventory_2:
     type: inventory
@@ -49,7 +49,7 @@ main_gui_inventory_2:
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
-    - [] [] [main_gui_item_prev_page] [] [] [] [main_gui_item_last_page] [] []
+    - [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_prev_page] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_last_page] [main_gui_item_bar] [main_gui_item_bar]
 
 main_gui_world:
     type: world
@@ -140,7 +140,7 @@ main_gui_world:
             - case main_gui_item_hpshow:
                 - define item tablist_hp_show
                 - foreach <server.online_players> as:player:
-                    - run tablist_update_task def.player:<[player]> def.health:<[player].health.round> delay:1t
+                    - run util_tablist_update def.player:<[player]> def.health:<[player].health.round_up> delay:1t
 
             - case main_gui_item_prev_page:
                 - inventory open d:main_gui_inventory_1
@@ -168,3 +168,8 @@ main_gui_item_last_page:
     type: item
     material: barrier
     display name: 마지막 장
+
+main_gui_item_bar:
+    type: item
+    material: gray_stained_glass_pane
+    display name: ' '

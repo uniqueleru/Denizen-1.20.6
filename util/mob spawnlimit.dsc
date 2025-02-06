@@ -14,7 +14,7 @@ main_gui_item_mob_spawnlimit:
         hides: ALL
     lore:
     - <&f>
-    - <&f> - <&7>몬스터의 스폰률이 대폭 증가합니다.
+    - <&f> - <&7>몬스터의 스폰이 100배 증가합니다.
     - <&f> - <&7>현재 상태: <server.flag[mob_spawnlimit]>
     - <&f>
 

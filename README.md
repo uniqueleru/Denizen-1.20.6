@@ -9,7 +9,7 @@ https://www.youtube.com/@이루05/
 
 ## 명령어
 
-* /optiongui : 아이콘을 눌러 기능들을 키고 끌 수 있습니다. 기본값은 모두 비활성화입니다.
+* /optiongui : 아이콘을 눌러 기능들을 켜고 끌 수 있습니다. 기본값은 모두 비활성화입니다.
 * /keybind : 입력하면 \'웅크리기 + 손 바꾸기\'로 \'/optiongui\'를 실행할 수 있습니다. 다시 입력하면 비활성화됩니다.
 
 * /displayname change \[player\] \[tablist_name\] : 플레이어의 탭 리스트 닉네임을 변경합니다.
