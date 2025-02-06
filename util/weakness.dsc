@@ -23,6 +23,9 @@ weakness_world:
         on entity damaged:
         - if <server.flag[weakness]> == <server.flag[text_disabled]>:
             - stop
+        - define damager <context.damager||null>
+        - if <[damager]> == null:
+            - stop
         - if <context.damager.is_player>:
             - define tool <context.damager.item_in_hand.material>
             - if <[tool].contains_text[sword]>:

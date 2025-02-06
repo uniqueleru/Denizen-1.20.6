@@ -44,7 +44,8 @@ chain_give_damage:
     - else:
         - define dmg <[amount].div[2]>
     - foreach <server.online_players> as:target:
-        - hurt <[dmg]> <[target]> cause:CUSTOM
+        - if <[dmg]> > 0:
+            - hurt <[dmg]> <[target]> cause:CUSTOM
     - actionbar "<&7>떨어진 정도: <&e><[amount].round_to[1]> <&f>| <&7>받는 대미지: <&c><[dmg].round_to[1]>" targets:<server.online_players>
 
 chain_get_average:

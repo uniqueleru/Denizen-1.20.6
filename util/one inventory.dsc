@@ -39,11 +39,17 @@ one_inventory_world:
         on player drops empty_slot:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
+        - narrate "<&7>그건 상우의 영혼이 깃들어 버릴 수 없는 물건이다"
         - determine cancelled
         on player clicks empty_slot in inventory:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
         - determine cancelled
+        on player clicks in inventory:
+        - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
+            - stop
+        - if ( <context.inventory> == <player.inventory> && ( <context.raw_slot> == 46 ) ):
+            - determine cancelled
         on player drags empty_slot in inventory:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
@@ -51,6 +57,7 @@ one_inventory_world:
         on player places empty_slot:
         - if <server.flag[one_inventory]> == <server.flag[text_disabled]>:
             - stop
+        - narrate "<&7>너무나 당연하게도 이건 설치할 수 없다"
         - determine cancelled
 
 one_inventory_toggle_task:
@@ -77,7 +84,7 @@ fill_slot_task:
             - define saved <[target].inventory.slot[<[count]>]>
             - drop <[saved]> <[target].location>
             - inventory set d:<[target].inventory> slot:<[count]> o:empty_slot
-    - drop <[target].item_in_offhand> <[target].location>
+    - drop <[target].item_in_offhand||null> <[target].location>
     - adjust <[target]> item_in_offhand:air
 
 empty_slot:

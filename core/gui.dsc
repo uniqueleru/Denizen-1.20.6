@@ -130,12 +130,18 @@ main_gui_world:
         - choose <context.item.script.name||null>:
             - case main_gui_item_hpshow:
                 - define item tablist_hp_show
+                - foreach <server.online_players> as:player:
+                    - run tablist_update_task def.player:<[player]> def.health:<[player].health.round> delay:1t
+
             - case main_gui_item_random_pickup:
                 - define item random_pickup
+
             - case main_gui_item_jump_share:
                 - define item jump_share
+
             - case main_gui_item_prev_page:
                 - inventory open d:main_gui_inventory_1
+
         - if <[item]> != null:
             - run main_gui_toggle_task def.option:<[item]> def.player:<player>
             - inventory open d:main_gui_inventory_2

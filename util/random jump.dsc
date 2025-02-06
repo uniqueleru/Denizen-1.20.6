@@ -50,5 +50,5 @@ random_jump_off_task:
     # 비활성화 시 기본 점프 강도로 복구. 놀랍게도 기본값이 저렇다.
     - definemap spec:
         generic_jump_strength: 0.41999998688697815
-    - foreach <server.players> as:origin:
+    - foreach <server.online_players> as:origin:
         - adjust <[origin]> attribute_base_values:<[spec]>

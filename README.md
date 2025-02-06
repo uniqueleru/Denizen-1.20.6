@@ -4,13 +4,14 @@
 https://www.youtube.com/@이루05/
 
 ---
+**본 프로젝트는 이루님의 [월드 옵션 토글](https://github.com/uniqueleru/Denizen-1.20.6) 스크립트를 배포용으로 적합하도록 개선하고 일부 기능을 추가한 포크입니다.**
 
-### ※ 이 아래부터는 forked repository의 내용입니다.
+* 대상 버전: 1.20.6, 1.21.4 (이외의 버전에서는 일부 기능이 정상 작동하지 않을 수 있습니다.)
 
 ## 커맨드
 
 * /optiongui : 아이콘을 눌러 기능들을 키고 끌 수 있습니다. 기본값은 모두 비활성화입니다.
-* /displayname change \[name1\] \[name2\] : \'name1\'을 닉네임으로 가진 플레이어의 탭 리스트 닉네임을 \'name2\'으로 바꿉니다.
-    * 재접속 시 반영됩니다.
-* /displayname reset \[name\] : \'name\'을 닉네임으로 가진 플레이어의 탭 리스트 닉네임을 초기화합니다.
-    * 재접속 시 반영됩니다.
+* /keybind : 입력하면 \'웅크리기 + 손 바꾸기\'로 \'/optiongui\'를 실행할 수 있습니다. 다시 입력하면 비활성화됩니다.
+
+* /displayname change \[player\] \[tablist_name\] : 플레이어의 탭 리스트 닉네임을 변경합니다.
+* /displayname reset \[player\] : 플레이어의 탭 리스트 닉네임을 초기화합니다.

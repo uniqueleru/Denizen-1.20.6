@@ -17,7 +17,6 @@ main_gui_item_hpshow:
     lore:
     - <&f>
     - <&f> - <&7>탭 리스트에 HP를 표시합니다.
-    - <&f> - <&e>주의: 재접속 시 반영됩니다.
     - <&f> - <&7>현재 상태: <server.flag[tablist_hp_show]>
     - <&f>
 
@@ -43,6 +42,7 @@ command_edit_name:
             - define playerName <context.args.get[2]>
             - define player <server.match_player[<[playerName]>]>
             - flag <[player]> tabname:<[player].name>
+    - run tablist_update_task def.player:<[player]> def.health:<[player].health.round> delay:1t
 
 tablist_world:
     type: world
