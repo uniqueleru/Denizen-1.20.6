@@ -48,8 +48,8 @@ main_gui_inventory_2:
     gui: true
     slots:
     - [] [] [] [] [] [] [] [] []
-    - [] [main_gui_item_random_jump] [] [main_gui_item_jump_share] [] [main_gui_item_random_pickup] [] [main_gui_item_hpshow] []
-    - [] [] [] [] [] [] [] [] []
+    - [] [main_gui_item_random_jump] [] [main_gui_item_zombie] [] [main_gui_item_jump_share] [] [main_gui_item_random_pickup] []
+    - [] [main_gui_item_hpshow] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_prev_page] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_last_page] [main_gui_item_bar] [main_gui_item_bar]
@@ -133,6 +133,13 @@ main_gui_world:
                 - define item random_jump
                 - if <server.flag[random_jump]> == <server.flag[text_enabled]>:
                     - run random_jump_off_task
+
+            - case main_gui_item_zombie:
+                - define item zombie
+                - if <server.flag[zombie]> == <server.flag[text_disabled]>:
+                    - run zombie_toggle_task def.toggle:on
+                - else if <server.flag[zombie]> == <server.flag[text_enabled]>:
+                    - run zombie_toggle_task def.toggle:off
 
             - case main_gui_item_random_pickup:
                 - define item random_pickup
