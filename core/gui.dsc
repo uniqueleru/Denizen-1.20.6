@@ -1,13 +1,16 @@
 # GUI 부분 /optiongui 인게임 커맨드로 옵션 토글 메뉴 오픈
 # 초기 실행시 각 옵션은 비활성화 상태입니다.
 
-option_menu_command:
+main_gui_command:
     type: command
     name: optiongui
     description: 메인메뉴
     usage: /optiongui
     debug: false
     script:
+    - if !<player.is_op>:
+        - narrate "<&e>운영자 권한이 필요합니다."
+        - stop
     - inventory open d:main_gui_inventory_1
 
 main_gui_toggle_task:

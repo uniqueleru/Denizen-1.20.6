@@ -36,6 +36,9 @@ util_tablist_command:
         2: <server.online_players.parse[name]>
     debug: false
     script:
+    - if !<player.is_op>:
+        - narrate "<&e>운영자 권한이 필요합니다."
+        - stop
     - choose <context.args.first>:
         - case change:
             - define playerName <context.args.get[2]>
@@ -55,6 +58,9 @@ util_keybind_command:
     usage: /keybind
     debug: false
     script:
+    - if !<player.is_op>:
+        - narrate "<&e>운영자 권한이 필요합니다."
+        - stop
     - if <server.flag[keybind]>:
         - flag server keybind:false
     - else:
@@ -85,7 +91,7 @@ util_keybind_world:
         - if !<server.flag[keybind]>:
             - stop
         - if <player.is_sneaking>:
-            - inventory open d:main_gui_inventory_1
+            - execute as_player optiongui
             - determine cancelled
 
 util_tablist_update:
