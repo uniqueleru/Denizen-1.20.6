@@ -1,8 +1,30 @@
+weakness_init:
+    type: world
+    debug: false
+    events:
+        on scripts loaded:
+        - if !<server.has_flag[weakness]>:
+            - flag server weakness:<&c>비활성화됨
+
+main_gui_item_weakness:
+    type: item
+    material: wooden_sword
+    display name: <&8>나약화
+    lore:
+    - <&f>
+    - <&f> - <&7>플레이어가 주는 데미지가 항상 1이 됩니다.
+    - <&f> - <&7>현재 상태: <server.flag[weakness]>
+    - <&f>
+
 weakness_world:
     type: world
+    debug: false
     events:
         on entity damaged:
-        - if <server.flag[weakness]> == <&c>비활성화됨:
+        - if <server.flag[weakness]> == <server.flag[text_disabled]>:
+            - stop
+        - define damager <context.damager||null>
+        - if <[damager]> == null:
             - stop
         - if <context.damager.is_player>:
             - define tool <context.damager.item_in_hand.material>
