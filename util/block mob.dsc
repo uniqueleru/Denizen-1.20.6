@@ -14,7 +14,7 @@ main_gui_item_block_mob:
     - <&f>
     - <&f> - <&7>블럭을 캐면 일정 확률로 몬스터화됩니다.
     - <&f> - <&e>주의: Depenizen과 Lib's Disguises,
-    - <&f>   <&e>ProtocolLib 플러그인이 필요합니다.
+    - <&f>   <&e>PacketEvents 플러그인이 필요합니다.
     - <&f> - <&7>현재 상태: <server.flag[block_mob]>
     - <&f>
 

@@ -110,8 +110,3 @@ util_tablist_update:
         - adjust <[player]> "player_list_name:<[player].flag[tabname]> <[colorcode]>[ <[health]> ]"
     - else:
         - adjust <[player]> player_list_name:<[player].flag[tabname]>
-
-util_empty_slot:
-    type: item
-    material: light_gray_stained_glass_pane
-    display name: ' '
