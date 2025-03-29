@@ -7,7 +7,7 @@ https://www.youtube.com/@이루05/
 
 * 대상 버전: 1.20.6, 1.21.4 (이외의 버전에서는 일부 기능이 정상 작동하지 않을 수 있습니다.)
 * Paper 서버 사용을 권장합니다.
-* 일부 기능에서 Lib's Disguises 플러그인을 필요로 합니다. 아직 1.21.4 버전의 Lib's Disguises 플러그인이 없으니 유의하세요.
+* 변장을 이용하는 일부 기능에서 [Lib's Disguises](https://www.spigotmc.org/resources/libs-disguises-free.81/) 플러그인을 필요로 합니다. 해당 플러그인과 함께 [Depenizen](https://ci.citizensnpcs.co/job/Depenizen/), [PacketEvent](https://ci.codemc.io/job/retrooper/job/packetevents/)도 함께 설치해야 합니다.
 
 ## 명령어
 

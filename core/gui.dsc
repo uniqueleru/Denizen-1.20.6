@@ -49,7 +49,7 @@ main_gui_inventory_2:
     slots:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_random_jump] [] [main_gui_item_zombie] [] [main_gui_item_jump_share] [] [main_gui_item_random_pickup] []
-    - [] [main_gui_item_hpshow] [] [] [] [] [] [] []
+    - [] [main_gui_item_hpshow] [] [main_gui_item_random_item] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_prev_page] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_last_page] [main_gui_item_bar] [main_gui_item_bar]
@@ -151,6 +151,13 @@ main_gui_world:
                 - define item tablist_hp_show
                 - foreach <server.online_players> as:player:
                     - run util_tablist_update def.player:<[player]> def.health:<[player].health.round_up> delay:1t
+
+            - case main_gui_item_random_item:
+                - define item random_item
+                - if <server.flag[random_item]> == <server.flag[text_disabled]>:
+                    - run random_item_toggle_task def.toggle:on
+                - else if <server.flag[random_item]> == <server.flag[text_enabled]>:
+                    - run random_item_toggle_task def.toggle:off
 
             - case main_gui_item_prev_page:
                 - inventory open d:main_gui_inventory_1
