@@ -1,6 +1,4 @@
-# util 부분은 다음의 양식에 맞추어 정렬되어 있습니다.
-# 플래그 초기화 - GUI 아이콘 - command - world - task - 기타
-# 가독성 및 호환성을 위해 각 컨테이너 이름은 해당 파일명으로 시작합니다.
+# util.dsc는 공용 flag를 정의하며, 탭리스트 수정과 keybind와 같은 편의성 기능을 포함합니다.
 
 util_init:
     type: world
