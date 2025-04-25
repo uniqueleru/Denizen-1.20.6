@@ -48,6 +48,13 @@ chain_give_damage:
             - hurt <[dmg]> <[target]> cause:CUSTOM
     - actionbar "<&7>떨어진 정도: <&e><[amount].round_to[1]> <&f>| <&7>받는 대미지: <&c><[dmg].round_to[1]>" targets:<server.online_players>
 
+chain_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 chain_get_average:
     type: procedure
     debug: false

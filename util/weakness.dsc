@@ -10,6 +10,8 @@ main_gui_item_weakness:
     type: item
     material: wooden_sword
     display name: <&8>나약화
+    mechanisms:
+        hides: ALL
     lore:
     - <&f>
     - <&f> - <&7>플레이어가 주는 데미지가 항상 1이 됩니다.
@@ -39,3 +41,10 @@ weakness_world:
             - else:
                 - actionbar "<&e><context.entity.translated_name>을(를) <&7>최대한 세게 쳤으나 팔에 힘이 들어가지 않는다.." targets:<context.damager>
             - determine 1
+
+weakness_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop

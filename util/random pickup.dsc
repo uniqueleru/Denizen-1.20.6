@@ -43,3 +43,10 @@ random_pickup_task:
         - actionbar "<&7>당신이 주운 <[item].quantity>개의 <&f><[item_name]>을(를) <&e><[random_player].flag[tabname]>이(가) <&7>대신 먹었다!" targets:<[player]>
         - actionbar "<&e><[player].flag[tabname]>이(가) <&7>주운 <[item].quantity>개의 <&f><[item_name]>을(를) <&7>대신 먹었다!" targets:<[random_player]>
     - playsound <[random_player]> sound:ENTITY_ITEM_PICKUP pitch:1 volume:0.2
+
+random_pickup_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop

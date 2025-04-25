@@ -107,3 +107,10 @@ block_mob_make_random_damage:
     - if <[ent].has_attribute[generic_attack_damage]>:
         #- announce "dmg: <[random_num]>"
         - adjust <[ent]> attribute_base_values:[generic_attack_damage=<[random_num]>]
+
+block_mob_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop

@@ -36,3 +36,10 @@ jump_share_task:
         - else:
             - define current_location <[target].location.above[1.5]>
             - push <[target]> origin:<[current_location]> destination:<[current_location]> speed:0.5 duration:1t no_rotate
+
+jump_share_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop

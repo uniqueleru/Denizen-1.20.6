@@ -10,6 +10,8 @@ main_gui_item_random_damage:
     type: item
     material: diamond_sword
     display name: <&5>랜덤 데미지
+    mechanisms:
+        hides: ALL
     lore:
     - <&f>
     - <&f> - <&7>플레이어가 데미지를 랜덤한 값으로 받습니다.
@@ -29,3 +31,10 @@ random_damage_world:
         - if <[cause]> != CUSTOM:
             - determine passively <[random_num]>
             - actionbar "<&7>입은 피해: <&c><[random_num].round>" targets:<context.entity>
+
+random_damage_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop

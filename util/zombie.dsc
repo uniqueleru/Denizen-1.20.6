@@ -103,7 +103,7 @@ zombie_toggle_task:
             - adjust <[origin]> attribute_base_values:<[spec]>
             # 좀비로 변장
             - libsdisguise mob type:ZOMBIE target:<[origin]> display_name:<[origin].name><&7>(였던것) self
-    - else:
+    - else if <[toggle]> == off:
         - foreach <server.online_players> as:origin:
             - definemap spec:
                 generic_attack_damage: 1.0

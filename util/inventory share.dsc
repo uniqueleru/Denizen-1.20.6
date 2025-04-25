@@ -61,3 +61,10 @@ inventory_share_copy:
                 - define slot <[count]>
                 - define slot:+:9
                 - inventory set d:<[target].inventory> slot:<[slot]> o:<[origin].inventory.slot[<[slot]>]>
+
+inventory_share_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop

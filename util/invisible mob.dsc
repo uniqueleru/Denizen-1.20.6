@@ -32,11 +32,13 @@ invisible_mob_world:
                 - if ( <[entity].is_living> && !<[entity].is_player> ):
                     - cast invisibility duration:infinite amplifier:0 <[entity]> hide_particles
 
-invisible_mob_off_task:
+invisible_mob_toggle_task:
     type: task
+    definitions: toggle
     debug: false
     script:
-    - foreach <server.worlds> as:world:
+    - if <[toggle]> == off:
+        - foreach <server.worlds> as:world:
             - foreach <[world].entities> as:entity:
                 - if ( <[entity].is_living> && !<[entity].is_player> ):
                     - cast invisibility remove <[entity]>

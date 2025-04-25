@@ -10,6 +10,8 @@ main_gui_item_damage_share:
     type: item
     material: iron_sword
     display name: <&c>데미지 공유
+    mechanisms:
+        hides: ALL
     lore:
     - <&f>
     - <&f> - <&7>플레이어 간 데미지가 공유됩니다.
@@ -34,3 +36,10 @@ damage_share_world:
                     - foreach next
                 - else:
                     - hurt <[damage]> <[target]> cause:CUSTOM
+
+damage_share_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
