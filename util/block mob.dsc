@@ -49,6 +49,13 @@ block_mob_death_event:
             - else:
                 - determine "<context.entity.name>이(가) 블럭에게 살해당했습니다"
 
+block_mob_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 block_mob_summon:
     type: task
     definitions: targ|loc|type
@@ -107,10 +114,3 @@ block_mob_make_random_damage:
     - if <[ent].has_attribute[generic_attack_damage]>:
         #- announce "dmg: <[random_num]>"
         - adjust <[ent]> attribute_base_values:[generic_attack_damage=<[random_num]>]
-
-block_mob_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop

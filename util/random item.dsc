@@ -19,6 +19,15 @@ main_gui_item_random_item:
     - <&f> - <&7>현재 상태: <server.flag[random_item]>
     - <&f>
 
+random_item_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - if <[toggle]> == on:
+        - if !<server.flag[random_item_running]>:
+            - run random_item_periodic_task
+
 random_item_task:
     type: task
     definitions: player
@@ -46,12 +55,3 @@ random_item_periodic_task:
             - run random_item_task def.player:<[player]>
     - bossbar remove random_item
     - flag server random_item_running:false
-
-random_item_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - if <[toggle]> == on:
-        - if !<server.flag[random_item_running]>:
-            - run random_item_periodic_task

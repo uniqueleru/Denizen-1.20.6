@@ -34,13 +34,15 @@ main_gui_inventory_1:
     title: 월드 옵션 토글
     size: 54
     gui: true
+    definitions:
+        bar: main_gui_bar
     slots:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_damage_share] [] [main_gui_item_inventory_share] [] [main_gui_item_random_damage] [] [main_gui_item_mob_downscale] []
     - [] [main_gui_item_mob_speedup] [] [main_gui_item_weakness] [] [main_gui_item_chain] [] [main_gui_item_one_inventory] []
     - [] [main_gui_item_mob_spawnlimit] [] [main_gui_item_fast_tick] [] [main_gui_item_block_mob] [] [main_gui_item_invisible_mob] []
     - [] [] [] [] [] [] [] [] []
-    - [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_first_page] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_next_page] [main_gui_item_bar] [main_gui_item_bar]
+    - [bar] [bar] [bar] [bar] [main_gui_page_1] [bar] [bar] [bar] [bar]
 
 main_gui_inventory_2:
     type: inventory
@@ -48,13 +50,15 @@ main_gui_inventory_2:
     title: 월드 옵션 토글
     size: 54
     gui: true
+    definitions:
+        bar: main_gui_bar
     slots:
     - [] [] [] [] [] [] [] [] []
     - [] [main_gui_item_random_jump] [] [main_gui_item_zombie] [] [main_gui_item_jump_share] [] [main_gui_item_random_pickup] []
     - [] [main_gui_item_hpshow] [] [main_gui_item_random_item] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
     - [] [] [] [] [] [] [] [] []
-    - [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_prev_page] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_bar] [main_gui_item_last_page] [main_gui_item_bar] [main_gui_item_bar]
+    - [bar] [bar] [bar] [bar] [main_gui_page_2] [bar] [bar] [bar] [bar]
 
 main_gui_world:
     type: world
@@ -88,7 +92,7 @@ main_gui_world:
             - case main_gui_item_invisible_mob:
                 - define item invisible_mob
 
-            - case main_gui_item_next_page:
+            - case main_gui_page_1:
                 - inventory open d:main_gui_inventory_2
 
         - if <[item]> != null:
@@ -111,34 +115,24 @@ main_gui_world:
             - case main_gui_item_random_item:
                 - define item random_item
 
-            - case main_gui_item_prev_page:
+            - case main_gui_page_2:
                 - inventory open d:main_gui_inventory_1
 
         - if <[item]> != null:
             - run main_gui_toggle_task def.option:<[item]> def.player:<player>
             - inventory open d:main_gui_inventory_2
 
-main_gui_item_prev_page:
+main_gui_page_1:
     type: item
-    material: paper
-    display name: 이전 장
+    material: arrow
+    display name: 페이지 [1/2]
 
-main_gui_item_next_page:
+main_gui_page_2:
     type: item
-    material: paper
-    display name: 다음 장
+    material: arrow
+    display name: 페이지 [2/2]
 
-main_gui_item_first_page:
-    type: item
-    material: barrier
-    display name: 첫 장
-
-main_gui_item_last_page:
-    type: item
-    material: barrier
-    display name: 마지막 장
-
-main_gui_item_bar:
+main_gui_bar:
     type: item
     material: gray_stained_glass_pane
     display name: ' '

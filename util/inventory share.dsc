@@ -29,6 +29,12 @@ inventory_share_world:
         after player dies:
         - run inventory_share_clear def.origin:<player>
 
+inventory_share_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
 
 inventory_share_clear:
     type: task
@@ -61,10 +67,3 @@ inventory_share_copy:
                 - define slot <[count]>
                 - define slot:+:9
                 - inventory set d:<[target].inventory> slot:<[slot]> o:<[origin].inventory.slot[<[slot]>]>
-
-inventory_share_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop
