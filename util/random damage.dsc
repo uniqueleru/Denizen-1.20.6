@@ -9,12 +9,12 @@ random_damage_init:
 main_gui_item_random_damage:
     type: item
     material: diamond_sword
-    display name: <&5>랜덤 데미지
+    display name: <&5>랜덤 대미지
     mechanisms:
         hides: ALL
     lore:
     - <&f>
-    - <&f> - <&7>플레이어가 데미지를 랜덤한 값으로 받습니다.
+    - <&f> - <&7>플레이어가 대미지를 랜덤한 값으로 받습니다.
     - <&f> - <&7>현재 상태: <server.flag[random_damage]>
     - <&f>
 

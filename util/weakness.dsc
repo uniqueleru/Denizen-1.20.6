@@ -14,7 +14,7 @@ main_gui_item_weakness:
         hides: ALL
     lore:
     - <&f>
-    - <&f> - <&7>플레이어가 주는 데미지가 항상 1이 됩니다.
+    - <&f> - <&7>플레이어가 주는 대미지가 항상 1이 됩니다.
     - <&f> - <&7>현재 상태: <server.flag[weakness]>
     - <&f>
 

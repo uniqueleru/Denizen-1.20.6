@@ -9,12 +9,12 @@ damage_share_init:
 main_gui_item_damage_share:
     type: item
     material: iron_sword
-    display name: <&c>데미지 공유
+    display name: <&c>대미지 공유
     mechanisms:
         hides: ALL
     lore:
     - <&f>
-    - <&f> - <&7>플레이어 간 데미지가 공유됩니다.
+    - <&f> - <&7>플레이어 간 대미지가 공유됩니다.
     - <&f> - <&7>현재 상태: <server.flag[damage_share]>
     - <&f>
 
