@@ -17,6 +17,13 @@ main_gui_item_chain:
     - <&f> - <&7>현재 상태: <server.flag[chain]>
     - <&f>
 
+chain_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 chain_event_handler:
     type: world
     debug: false
@@ -33,13 +40,6 @@ chain_event_handler:
         - run chain_give_damage def.amount:<[finalValue]>
         on player uses portal:
         - flag server chain_damage_bypass:4
-
-chain_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop
 
 chain_give_damage:
     type: task

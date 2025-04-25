@@ -18,6 +18,13 @@ main_gui_item_damage_share:
     - <&f> - <&7>현재 상태: <server.flag[damage_share]>
     - <&f>
 
+damage_share_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 damage_share_world:
     type: world
     debug: false
@@ -36,10 +43,3 @@ damage_share_world:
                     - foreach next
                 - else:
                     - hurt <[damage]> <[target]> cause:CUSTOM
-
-damage_share_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop

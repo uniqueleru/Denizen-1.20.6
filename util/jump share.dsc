@@ -16,6 +16,13 @@ main_gui_item_jump_share:
     - <&f> - <&7>현재 상태: <server.flag[jump_share]>
     - <&f>
 
+jump_share_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 jump_share_world:
     type: world
     debug: false
@@ -24,13 +31,6 @@ jump_share_world:
         - if <server.flag[jump_share]> == <server.flag[text_disabled]>:
             - stop
         - run jump_share_task def.origin:<player>
-
-jump_share_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop
 
 jump_share_task:
     type: task

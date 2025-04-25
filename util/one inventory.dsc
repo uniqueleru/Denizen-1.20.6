@@ -16,6 +16,20 @@ main_gui_item_one_inventory:
     - <&f> - <&7>현재 상태: <server.flag[one_inventory]>
     - <&f>
 
+one_inventory_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - if <[toggle]> == on:
+        - foreach <server.online_players> as:players:
+                - run one_inventory_fill_slot def.target:<[players]>
+    - else if <[toggle]> == off:
+        - foreach <server.online_players> as:players:
+                - repeat 36 as:count:
+                    - if <[count]> != 5:
+                        - inventory set d:<[players].inventory> slot:<[count]> o:air
+
 one_inventory_world:
     type: world
     debug: false
@@ -62,20 +76,6 @@ one_inventory_world:
             - stop
         - narrate "<&7>너무나 당연하게도 이건 설치할 수 없다"
         - determine cancelled
-
-one_inventory_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - if <[toggle]> == on:
-        - foreach <server.online_players> as:players:
-                - run one_inventory_fill_slot def.target:<[players]>
-    - else if <[toggle]> == off:
-        - foreach <server.online_players> as:players:
-                - repeat 36 as:count:
-                    - if <[count]> != 5:
-                        - inventory set d:<[players].inventory> slot:<[count]> o:air
 
 one_inventory_fill_slot:
     type: task

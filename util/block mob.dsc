@@ -18,6 +18,13 @@ main_gui_item_block_mob:
     - <&f> - <&7>현재 상태: <server.flag[block_mob]>
     - <&f>
 
+block_mob_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 block_mob_block_break:
     type: world
     debug: false
@@ -48,13 +55,6 @@ block_mob_death_event:
                 - determine "<context.entity.name>이(가) 블럭에게 저격당했습니다"
             - else:
                 - determine "<context.entity.name>이(가) 블럭에게 살해당했습니다"
-
-block_mob_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop
 
 block_mob_summon:
     type: task

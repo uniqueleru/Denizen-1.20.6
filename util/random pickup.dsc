@@ -16,6 +16,13 @@ main_gui_item_random_pickup:
     - <&f> - <&7>현재 상태: <server.flag[random_pickup]>
     - <&f>
 
+random_pickup_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 random_pickup_world:
     type: world
     debug: false
@@ -26,13 +33,6 @@ random_pickup_world:
         - run random_pickup_task def.player:<player> def.item:<context.item>
         - remove <context.entity>
         - determine cancelled
-
-random_pickup_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop
 
 random_pickup_task:
     type: task

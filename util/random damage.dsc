@@ -18,6 +18,13 @@ main_gui_item_random_damage:
     - <&f> - <&7>현재 상태: <server.flag[random_damage]>
     - <&f>
 
+random_damage_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 random_damage_world:
     type: world
     debug: false
@@ -31,10 +38,3 @@ random_damage_world:
         - if <[cause]> != CUSTOM:
             - determine passively <[random_num]>
             - actionbar "<&7>입은 피해: <&c><[random_num].round>" targets:<context.entity>
-
-random_damage_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop

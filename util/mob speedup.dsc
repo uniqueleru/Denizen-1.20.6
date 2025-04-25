@@ -16,18 +16,6 @@ main_gui_item_mob_speedup:
     - <&f> - <&7>현재 상태: <server.flag[mob_speedup]>
     - <&f>
 
-mob_speedup_world:
-    type: world
-    debug: false
-    events:
-        after entity spawns:
-        # 소환되는 몬스터 speed 조정
-        - if <server.flag[mob_speedup]> == <server.flag[text_disabled]>:
-            - stop
-        - if ( <context.entity.is_monster> && <context.entity.has_attribute[generic_movement_speed]> && <context.entity.has_attribute[generic_follow_range]> ):
-            - adjust <context.entity> attribute_base_values:[generic_movement_speed=0.6]
-            - adjust <context.entity> attribute_base_values:[generic_follow_range=128]
-
 mob_speedup_toggle_task:
     type: task
     definitions: toggle
@@ -48,3 +36,15 @@ mob_speedup_toggle_task:
                         - adjust <[entity]> attribute_base_values:[generic_movement_speed=0.25]
                         - define default <[entity].attribute_default_value[generic_follow_range]>
                         - adjust <[entity]> attribute_base_values:[generic_follow_range=<[default]>]
+
+mob_speedup_world:
+    type: world
+    debug: false
+    events:
+        after entity spawns:
+        # 소환되는 몬스터 speed 조정
+        - if <server.flag[mob_speedup]> == <server.flag[text_disabled]>:
+            - stop
+        - if ( <context.entity.is_monster> && <context.entity.has_attribute[generic_movement_speed]> && <context.entity.has_attribute[generic_follow_range]> ):
+            - adjust <context.entity> attribute_base_values:[generic_movement_speed=0.6]
+            - adjust <context.entity> attribute_base_values:[generic_follow_range=128]

@@ -20,6 +20,28 @@ main_gui_item_zombie:
     - <&f> - <&7>현재 상태: <server.flag[zombie]>
     - <&f>
 
+zombie_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - if <[toggle]> == on:
+        - foreach <server.online_players> as:origin:
+            # 좀비 기본 스펙 적용(공격력 3, 방어력 2)
+            - definemap spec:
+                generic_attack_damage: 3.0
+                generic_armor: 2.0
+            - adjust <[origin]> attribute_base_values:<[spec]>
+            # 좀비로 변장
+            - libsdisguise mob type:ZOMBIE target:<[origin]> display_name:<[origin].name><&7>(였던것) self
+    - else if <[toggle]> == off:
+        - foreach <server.online_players> as:origin:
+            - definemap spec:
+                generic_attack_damage: 1.0
+                generic_armor: 0.0
+            - adjust <[origin]> attribute_base_values:<[spec]>
+            - libsdisguise remove target:<[origin]>
+
 zombie_world:
     type: world
     debug: false
@@ -88,28 +110,6 @@ zombie_world:
         - if <server.flag[zombie]> == <server.flag[text_disabled]>:
             - stop
         - libsdisguise mob type:ZOMBIE target:<player> display_name:<player.name><&7>(였던것) self
-
-zombie_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - if <[toggle]> == on:
-        - foreach <server.online_players> as:origin:
-            # 좀비 기본 스펙 적용(공격력 3, 방어력 2)
-            - definemap spec:
-                generic_attack_damage: 3.0
-                generic_armor: 2.0
-            - adjust <[origin]> attribute_base_values:<[spec]>
-            # 좀비로 변장
-            - libsdisguise mob type:ZOMBIE target:<[origin]> display_name:<[origin].name><&7>(였던것) self
-    - else if <[toggle]> == off:
-        - foreach <server.online_players> as:origin:
-            - definemap spec:
-                generic_attack_damage: 1.0
-                generic_armor: 0.0
-            - adjust <[origin]> attribute_base_values:<[spec]>
-            - libsdisguise remove target:<[origin]>
 
 zombie_vil_with_prof:
     type: entity

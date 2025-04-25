@@ -18,6 +18,13 @@ main_gui_item_weakness:
     - <&f> - <&7>현재 상태: <server.flag[weakness]>
     - <&f>
 
+weakness_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 weakness_world:
     type: world
     debug: false
@@ -41,10 +48,3 @@ weakness_world:
             - else:
                 - actionbar "<&e><context.entity.translated_name>을(를) <&7>최대한 세게 쳤으나 팔에 힘이 들어가지 않는다.." targets:<context.damager>
             - determine 1
-
-weakness_toggle_task:
-    type: task
-    definitions: toggle
-    debug: false
-    script:
-    - stop
