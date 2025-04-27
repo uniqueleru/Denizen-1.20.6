@@ -9,14 +9,21 @@ block_mob_init:
 main_gui_item_block_mob:
     type: item
     material: diamond_ore
-    display name: <&b>블럭 몬스터화
+    display name: <&b>블록 몬스터화
     lore:
     - <&f>
-    - <&f> - <&7>블럭을 캐면 일정 확률로 몬스터화됩니다.
+    - <&f> - <&7>블록을 캐면 일정 확률로 몬스터화됩니다.
     - <&f> - <&e>주의: Depenizen과 Lib's Disguises,
     - <&f>   <&e>PacketEvents 플러그인이 필요합니다.
     - <&f> - <&7>현재 상태: <server.flag[block_mob]>
     - <&f>
+
+block_mob_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
 
 block_mob_block_break:
     type: world

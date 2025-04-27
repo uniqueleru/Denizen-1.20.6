@@ -16,17 +16,6 @@ main_gui_item_mob_downscale:
     - <&f> - <&7>현재 상태: <server.flag[mob_downscale]>
     - <&f>
 
-mob_downscale_world:
-    type: world
-    debug: false
-    events:
-        after entity spawns:
-        # 소환되는 몬스터 scale 조정
-        - if <server.flag[mob_downscale]> == <server.flag[text_disabled]>:
-            - stop
-        - if ( <context.entity.is_monster> && <context.entity.has_attribute[generic_scale]> ):
-                        - adjust <context.entity> attribute_base_values:[generic_scale=0.1]
-
 mob_downscale_toggle_task:
     type: task
     definitions: toggle
@@ -45,3 +34,14 @@ mob_downscale_toggle_task:
                     - if ( <[entity].is_monster> && <[entity].has_attribute[generic_scale]> ):
                         - define default <[entity].attribute_default_value[generic_scale]>
                         - adjust <[entity]> attribute_base_values:[generic_scale=<[default]>]
+
+mob_downscale_world:
+    type: world
+    debug: false
+    events:
+        after entity spawns:
+        # 소환되는 몬스터 scale 조정
+        - if <server.flag[mob_downscale]> == <server.flag[text_disabled]>:
+            - stop
+        - if ( <context.entity.is_monster> && <context.entity.has_attribute[generic_scale]> ):
+                        - adjust <context.entity> attribute_base_values:[generic_scale=0.1]

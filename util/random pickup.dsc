@@ -16,6 +16,13 @@ main_gui_item_random_pickup:
     - <&f> - <&7>현재 상태: <server.flag[random_pickup]>
     - <&f>
 
+random_pickup_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 random_pickup_world:
     type: world
     debug: false

@@ -12,11 +12,25 @@ main_gui_item_random_jump:
     type: item
     material: golden_boots
     display name: <&5>랜덤 점프
+    mechanisms:
+        hides: ALL
     lore:
     - <&f>
     - <&f> - <&7>매번 점프의 강도가 랜덤으로 정해집니다.
     - <&f> - <&7>현재 상태: <server.flag[random_jump]>
     - <&f>
+
+random_jump_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - if <[toggle]> == off:
+        # 비활성화 시 기본 점프 강도로 복구. 놀랍게도 기본값이 저렇다.
+        - definemap spec:
+            generic_jump_strength: 0.41999998688697815
+        - foreach <server.online_players> as:origin:
+            - adjust <[origin]> attribute_base_values:<[spec]>
 
 random_jump_world:
     type: world
@@ -42,13 +56,3 @@ random_jump_world:
         - definemap spec:
                generic_jump_strength: <[power]>
         - adjust <player> attribute_base_values:<[spec]>
-
-random_jump_off_task:
-    type: task
-    debug: false
-    script:
-    # 비활성화 시 기본 점프 강도로 복구. 놀랍게도 기본값이 저렇다.
-    - definemap spec:
-        generic_jump_strength: 0.41999998688697815
-    - foreach <server.online_players> as:origin:
-        - adjust <[origin]> attribute_base_values:<[spec]>

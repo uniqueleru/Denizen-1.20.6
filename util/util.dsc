@@ -1,6 +1,4 @@
-# util 부분은 다음의 양식에 맞추어 정렬되어 있습니다.
-# 플래그 초기화 - GUI 아이콘 - command - world - task - 기타
-# 가독성 및 호환성을 위해 각 컨테이너 이름은 해당 파일명으로 시작합니다.
+# util.dsc는 공용 flag를 정의하며, 탭리스트 수정과 keybind와 같은 편의성 기능을 포함합니다.
 
 util_init:
     type: world
@@ -9,20 +7,8 @@ util_init:
         on scripts loaded:
         - flag server text_enabled:<&a>활성화됨
         - flag server text_disabled:<&c>비활성화됨
-        - if !<server.has_flag[tablist_hp_show]>:
-            - flag server tablist_hp_show:<&c>비활성화됨
         - if !<server.has_flag[keybind]>:
             - flag server keybind:false
-
-main_gui_item_hpshow:
-    type: item
-    material: golden_apple
-    display name: <&a>탭 리스트 HP 표시
-    lore:
-    - <&f>
-    - <&f> - <&7>탭 리스트에 HP를 표시합니다.
-    - <&f> - <&7>현재 상태: <server.flag[tablist_hp_show]>
-    - <&f>
 
 util_tablist_command:
     type: command
@@ -51,21 +37,6 @@ util_tablist_command:
             - flag <[player]> tabname:<[player].name>
     - run util_tablist_update def.player:<[player]> def.health:<[player].health.round_up> delay:1t
 
-util_keybind_command:
-    type: command
-    name: keybind
-    description: Shift + F로 열기
-    usage: /keybind
-    debug: false
-    script:
-    - if !<player.is_op>:
-        - narrate "<&e>운영자 권한이 필요합니다."
-        - stop
-    - if <server.flag[keybind]>:
-        - flag server keybind:false
-    - else:
-        - flag server keybind:true
-
 util_tablist_world:
     type: world
     debug: false
@@ -83,17 +54,6 @@ util_tablist_world:
         - define player <context.entity>
         - run util_tablist_update def.player:<[player]> def.health:<[player].health.round_up> delay:1t
 
-util_keybind_world:
-    type: world
-    debug: false
-    events:
-        on player swaps items:
-        - if !<server.flag[keybind]>:
-            - stop
-        - if <player.is_sneaking>:
-            - execute as_player optiongui
-            - determine cancelled
-
 util_tablist_update:
     type: task
     definitions: player|health
@@ -106,7 +66,33 @@ util_tablist_update:
         - define colorcode <&e>
     - else:
         - define colorcode <&c>
-    - if <server.flag[tablist_hp_show]> == <server.flag[text_enabled]>:
+    - if <server.flag[hpshow]> == <server.flag[text_enabled]>:
         - adjust <[player]> "player_list_name:<[player].flag[tabname]> <[colorcode]>[ <[health]> ]"
     - else:
         - adjust <[player]> player_list_name:<[player].flag[tabname]>
+
+util_keybind_command:
+    type: command
+    name: keybind
+    description: Shift + F로 열기
+    usage: /keybind
+    debug: false
+    script:
+    - if !<player.is_op>:
+        - narrate "<&e>운영자 권한이 필요합니다."
+        - stop
+    - if <server.flag[keybind]>:
+        - flag server keybind:false
+    - else:
+        - flag server keybind:true
+
+util_keybind_world:
+    type: world
+    debug: false
+    events:
+        on player swaps items:
+        - if !<server.flag[keybind]>:
+            - stop
+        - if <player.is_sneaking>:
+            - execute as_player optiongui
+            - determine cancelled

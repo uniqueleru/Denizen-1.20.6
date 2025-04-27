@@ -10,11 +10,20 @@ main_gui_item_weakness:
     type: item
     material: wooden_sword
     display name: <&8>나약화
+    mechanisms:
+        hides: ALL
     lore:
     - <&f>
-    - <&f> - <&7>플레이어가 주는 데미지가 항상 1이 됩니다.
+    - <&f> - <&7>플레이어가 주는 대미지가 항상 1이 됩니다.
     - <&f> - <&7>현재 상태: <server.flag[weakness]>
     - <&f>
+
+weakness_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
 
 weakness_world:
     type: world

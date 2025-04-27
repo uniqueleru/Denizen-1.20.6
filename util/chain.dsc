@@ -17,6 +17,13 @@ main_gui_item_chain:
     - <&f> - <&7>현재 상태: <server.flag[chain]>
     - <&f>
 
+chain_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 chain_event_handler:
     type: world
     debug: false

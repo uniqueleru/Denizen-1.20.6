@@ -20,6 +20,17 @@ main_gui_item_invisible_mob:
     - <&f> - <&7>현재 상태: <&f><server.flag[invisible_mob]>
     - <&f>
 
+invisible_mob_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - if <[toggle]> == off:
+        - foreach <server.worlds> as:world:
+            - foreach <[world].entities> as:entity:
+                - if ( <[entity].is_living> && !<[entity].is_player> ):
+                    - cast invisibility remove <[entity]>
+
 invisible_mob_world:
     type: world
     debug: false
@@ -31,12 +42,3 @@ invisible_mob_world:
             - foreach <[world].entities> as:entity:
                 - if ( <[entity].is_living> && !<[entity].is_player> ):
                     - cast invisibility duration:infinite amplifier:0 <[entity]> hide_particles
-
-invisible_mob_off_task:
-    type: task
-    debug: false
-    script:
-    - foreach <server.worlds> as:world:
-            - foreach <[world].entities> as:entity:
-                - if ( <[entity].is_living> && !<[entity].is_player> ):
-                    - cast invisibility remove <[entity]>

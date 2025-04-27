@@ -16,6 +16,13 @@ main_gui_item_inventory_share:
     - <&f> - <&7>현재 상태: <server.flag[inventory_share]>
     - <&f>
 
+inventory_share_toggle_task:
+    type: task
+    definitions: toggle
+    debug: false
+    script:
+    - stop
+
 inventory_share_world:
     type: world
     debug: false
@@ -28,7 +35,6 @@ inventory_share_world:
         - run inventory_share_copy def.origin:<player>
         after player dies:
         - run inventory_share_clear def.origin:<player>
-
 
 inventory_share_clear:
     type: task
